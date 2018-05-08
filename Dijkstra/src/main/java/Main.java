@@ -6,9 +6,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Node n1 = new Node();
-		Node n2 = new Node();
-		Node n3 = new Node();
+		Vertex n1 = new Vertex();
+		Vertex n2 = new Vertex();
+		Vertex n3 = new Vertex();
 		
 		System.out.println(n1);
 		System.out.println(n2);
