@@ -16,10 +16,9 @@ public class Graph {
 		m_Vertices = new ArrayList<Vertex>();
 	}
 	
-	
-	public void AddVertex() {
-		m_Vertices.add(new Vertex());
-		m_Vertices.sort(null);
+	public void AddVertices(int number) {
+		for(int i = 0; i < number; i++)
+			m_Vertices.add(new Vertex());
 	}
 	
 	public void AddEdge(Vertex v1, Vertex v2, float weight) {
