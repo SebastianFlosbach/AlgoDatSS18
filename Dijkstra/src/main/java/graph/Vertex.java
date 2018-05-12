@@ -7,11 +7,20 @@ public class Vertex implements Comparable<Vertex>{
 	private static int m_IdCounter = 0;
 	
 	// Values for dijkstra
-	public float Distance = Float.MAX_VALUE;
+	private float m_Distance = Float.MAX_VALUE;
 	
 	public int Id;
 	
 	private ArrayList<Edge> Edges;
+	
+	
+	public float GetDistance() {
+		return m_Distance;
+	}
+	
+	public void SetDistance(float distance) {
+		m_Distance = distance;
+	}
 	
 	
 	public Vertex() {
