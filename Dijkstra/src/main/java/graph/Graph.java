@@ -5,17 +5,21 @@ import java.util.List;
 
 public class Graph {
 	
-	private List<Vertex> Vertices;
+	private List<Vertex> m_Vertices;
+	
+	public List<Vertex> GetVertices(){
+		return m_Vertices;
+	}
 	
 	
 	public Graph() {
-		Vertices = new ArrayList<Vertex>();
+		m_Vertices = new ArrayList<Vertex>();
 	}
 	
 	
 	public void AddVertex() {
-		Vertices.add(new Vertex());
-		Vertices.sort(null);
+		m_Vertices.add(new Vertex());
+		m_Vertices.sort(null);
 	}
 	
 	public void AddEdge(Vertex v1, Vertex v2, float weight) {
@@ -29,8 +33,8 @@ public class Graph {
 	}
 	
 	public void AddEdge(int v1, int v2, float weight) {
-		Vertex vert1 = Vertices.stream().filter(v -> v.Id == v1).findFirst().get();
-		Vertex vert2 = Vertices.stream().filter(v -> v.Id == v2).findFirst().get();
+		Vertex vert1 = m_Vertices.stream().filter(v -> v.Id == v1).findFirst().get();
+		Vertex vert2 = m_Vertices.stream().filter(v -> v.Id == v2).findFirst().get();
 		
 		AddEdge(vert1, vert2, weight);
 	}
