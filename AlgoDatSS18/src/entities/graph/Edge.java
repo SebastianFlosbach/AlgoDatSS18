@@ -1,4 +1,4 @@
-package main.java.graph;
+package entities.graph;
 
 public class Edge {
 	

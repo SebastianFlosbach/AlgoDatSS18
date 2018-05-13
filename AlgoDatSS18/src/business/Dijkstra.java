@@ -1,4 +1,4 @@
-package algorithms.dijkstra;
+package business;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,10 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import main.java.graph.Edge;
-import main.java.graph.Graph;
-import main.java.graph.Path;
-import main.java.graph.Vertex;
+import entities.graph.Edge;
+import entities.graph.Graph;
+import entities.graph.Path;
+import entities.graph.Vertex;
 
 public class Dijkstra {
 	
@@ -25,7 +25,7 @@ public class Dijkstra {
 	public Path FindShortestPath(int startId, int endId) {
 		
 		// Path from end to start
-		Path path = new Path();
+		Path shortestPathEndToStart = new Path();
 		
 		// Currently visited vertex
 		Vertex currentVertex = null;
@@ -36,7 +36,7 @@ public class Dijkstra {
 		int[] previousVertex = new int[m_Graph.GetVertices().length];
 		Arrays.fill(previousVertex, Integer.MAX_VALUE);
 				
-		// Add all vertices except start to unvisited
+		// Add vertices to unvisited
 		for (Vertex vertex : m_Graph.GetVertices()) {				
 			if (vertex.GetId() == startId) {
 				currentVertex = vertex;
@@ -86,12 +86,12 @@ public class Dijkstra {
 		
 		// Get path from end to start by reverse iteration
 		while(previousVertex[currentVertexId] != Integer.MAX_VALUE) {
-			path.AddWaypoint(currentVertexId);
+			shortestPathEndToStart.AddWaypoint(currentVertexId);
 			currentVertexId = previousVertex[currentVertexId];
 		}
-		path.AddWaypoint(startId);
+		shortestPathEndToStart.AddWaypoint(startId);
 		
-		return path;
+		return shortestPathEndToStart;
 	}
 	
 }

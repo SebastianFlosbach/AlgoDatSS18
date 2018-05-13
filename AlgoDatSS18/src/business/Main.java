@@ -1,8 +1,7 @@
-package main.java;
+package business;
 
-import algorithms.dijkstra.Dijkstra;
-import main.java.graph.Graph;
-import main.java.graph.Path;
+import entities.graph.Graph;
+import entities.graph.Path;
 
 public class Main {
 
