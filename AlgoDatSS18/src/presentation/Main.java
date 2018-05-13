@@ -1,6 +1,6 @@
 package presentation;
 
-import business.Dijkstra;
+import business.algorithm.Dijkstra;
 import entities.graph.Graph;
 import entities.graph.Path;
 
