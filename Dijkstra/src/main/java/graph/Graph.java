@@ -1,25 +1,23 @@
 package main.java.graph;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Graph {
 	
-	private List<Vertex> m_Vertices;
+	private Vertex[] m_Vertices;
 	
-	public List<Vertex> GetVertices(){
+	public Vertex[] GetVertices(){
 		return m_Vertices;
 	}
 	
 	
-	public Graph() {
-		m_Vertices = new ArrayList<Vertex>();
+	public Graph(int vertices) {
+		m_Vertices = new Vertex[vertices];
+		
+		for(int i = 0; i < vertices; i++) {
+			m_Vertices[i] = new Vertex(i);
+		}
 	}
 	
-	public void AddVertices(int number) {
-		for(int i = 0; i < number; i++)
-			m_Vertices.add(new Vertex());
-	}
 	
 	public void AddEdge(Vertex v1, Vertex v2, float weight) {
 		
@@ -31,11 +29,8 @@ public class Graph {
 		v2.AddEdge(newEdge);
 	}
 	
-	public void AddEdge(int v1, int v2, float weight) {
-		Vertex vert1 = m_Vertices.stream().filter(v -> v.Id == v1).findFirst().get();
-		Vertex vert2 = m_Vertices.stream().filter(v -> v.Id == v2).findFirst().get();
-		
-		AddEdge(vert1, vert2, weight);
+	public void AddEdge(int v1, int v2, float weight) {		
+		AddEdge(m_Vertices[v1], m_Vertices[v2], weight);
 	}
 	
 }

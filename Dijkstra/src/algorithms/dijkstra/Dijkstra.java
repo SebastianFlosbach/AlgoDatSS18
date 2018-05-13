@@ -33,12 +33,12 @@ public class Dijkstra {
 		// Initialize array that contains the id of the previous vertex in the shortest path to that vertex.
 		// For example, if the shortest path to vertex 2 is from vertex 6 then prev[2] = 6.
 		// If the vertex doesn't have a previous vertex it is set so Integer.MAX_VALUE.
-		int[] previousVertex = new int[m_Graph.GetVertices().size()];
+		int[] previousVertex = new int[m_Graph.GetVertices().length];
 		Arrays.fill(previousVertex, Integer.MAX_VALUE);
 				
 		// Add all vertices except start to unvisited
 		for (Vertex vertex : m_Graph.GetVertices()) {				
-			if (vertex.Id == startId) {
+			if (vertex.GetId() == startId) {
 				currentVertex = vertex;
 			}
 			
@@ -59,7 +59,7 @@ public class Dijkstra {
 			currentVertex.Visited = true;
 			
 			// Exit loop if path to end vertex has been found
-			if(currentVertex.Id == endId)
+			if(currentVertex.GetId() == endId)
 				break;
 			
 			// Calculate distance to each unvisited neighbour
@@ -76,7 +76,7 @@ public class Dijkstra {
 				// If distance is smaller than neighbours shortest distance set that neighbours distance
 				if(distance < neighbour.GetDistance()) {
 					neighbour.SetDistance(distance);
-					previousVertex[neighbour.Id] = currentVertex.Id;
+					previousVertex[neighbour.GetId()] = currentVertex.GetId();
 				}
 			}
 			

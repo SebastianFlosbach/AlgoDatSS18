@@ -8,9 +8,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Graph graph = new Graph();
+		Graph graph = new Graph(5);
 		
-		graph.AddVertices(5);
 		graph.AddEdge(0, 1, 1);
 		graph.AddEdge(0, 2, 1);
 		graph.AddEdge(1, 2, 4);

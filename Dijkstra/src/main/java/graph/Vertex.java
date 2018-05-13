@@ -5,17 +5,18 @@ import java.util.List;
 
 public class Vertex {
 	
-	private static int m_IdCounter = 0;
-	
 	// Values for dijkstra
 	private float m_Distance = Float.MAX_VALUE;
 	
 	public boolean Visited = false;
 	
-	public int Id;
+	private int m_Id;
 	
 	private List<Edge> m_Edges;
 	
+	public int GetId() {
+		return m_Id;
+	}
 	
 	public float GetDistance() {
 		return m_Distance;
@@ -30,8 +31,8 @@ public class Vertex {
 	}
 	
 	
-	public Vertex() {
-		Id = m_IdCounter++;
+	public Vertex(int id) {
+		m_Id = id;
 		m_Edges = new ArrayList<Edge>();
 	}
 
@@ -58,7 +59,7 @@ public class Vertex {
 	
 	@Override
 	public String toString() {
-		return "Vertex [Id=" + Id + ", Edges=" + m_Edges.size() + "]";
+		return "Vertex [Id=" + m_Id + ", Edges=" + m_Edges.size() + "]";
 	}
 
 }
