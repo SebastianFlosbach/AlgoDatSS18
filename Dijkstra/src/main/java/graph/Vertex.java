@@ -50,7 +50,7 @@ public class Vertex {
 		Vertex[] neighbours = new Vertex[m_Edges.size()];
 		
 		for (int i = 0; i < m_Edges.size(); i++) {
-			neighbours[i] = m_Edges.get(i).GetNextVertex(this);
+			neighbours[i] = m_Edges.get(i).GetNeighbour(this);
 		}
 		
 		return neighbours;

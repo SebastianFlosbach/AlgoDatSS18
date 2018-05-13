@@ -20,7 +20,6 @@ public class Dijkstra {
 	public Dijkstra(Graph graph) {
 		m_Graph = graph;
 		m_Unvisited = new ArrayList<Vertex>();
-		
 	}
 	
 	public Path FindShortestPath(int startId, int endId) {
@@ -34,8 +33,8 @@ public class Dijkstra {
 		// Initialize array that contains the id of the previous vertex in the shortest path to that vertex.
 		// For example, if the shortest path to vertex 2 is from vertex 6 then prev[2] = 6.
 		// If the vertex doesn't have a previous vertex it is set so Integer.MAX_VALUE.
-		int[] prev = new int[m_Graph.GetVertices().size()];
-		Arrays.fill(prev, Integer.MAX_VALUE);
+		int[] previousVertex = new int[m_Graph.GetVertices().size()];
+		Arrays.fill(previousVertex, Integer.MAX_VALUE);
 				
 		// Add all vertices except start to unvisited
 		for (Vertex vertex : m_Graph.GetVertices()) {				
@@ -66,18 +65,18 @@ public class Dijkstra {
 			// Calculate distance to each unvisited neighbour
 			for(Edge edge : currentVertex.GetEdges()) {
 						
-				Vertex neighbour = edge.GetNextVertex(currentVertex);					
+				Vertex neighbour = edge.GetNeighbour(currentVertex);					
 				
 				if(neighbour.Visited)
 					continue;
 				
 				// Distance to current neighbour
-				float distance = currentVertex.GetDistance() + edge.Weight;
+				float distance = currentVertex.GetDistance() + edge.GetWeight();
 				
 				// If distance is smaller than neighbours shortest distance set that neighbours distance
 				if(distance < neighbour.GetDistance()) {
 					neighbour.SetDistance(distance);
-					prev[neighbour.Id] = currentVertex.Id;
+					previousVertex[neighbour.Id] = currentVertex.Id;
 				}
 			}
 			
@@ -86,9 +85,9 @@ public class Dijkstra {
 		int currentVertexId = endId;
 		
 		// Get path from end to start by reverse iteration
-		while(prev[currentVertexId] != Integer.MAX_VALUE) {
+		while(previousVertex[currentVertexId] != Integer.MAX_VALUE) {
 			path.AddWaypoint(currentVertexId);
-			currentVertexId = prev[currentVertexId];
+			currentVertexId = previousVertex[currentVertexId];
 		}
 		path.AddWaypoint(startId);
 		
