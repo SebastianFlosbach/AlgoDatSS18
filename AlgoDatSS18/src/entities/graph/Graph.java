@@ -1,4 +1,4 @@
-package main.java.graph;
+package entities.graph;
 
 
 public class Graph {
@@ -16,8 +16,7 @@ public class Graph {
 		for(int i = 0; i < vertices; i++) {
 			m_Vertices[i] = new Vertex(i);
 		}
-	}
-	
+	}	
 	
 	public void AddEdge(Vertex v1, Vertex v2, float weight) {
 		
