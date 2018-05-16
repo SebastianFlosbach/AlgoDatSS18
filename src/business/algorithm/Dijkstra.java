@@ -1,10 +1,8 @@
 package business.algorithm;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
 
 import entities.graph.Edge;
 import entities.graph.Graph;
@@ -16,7 +14,7 @@ public class Dijkstra {
 
 	public static Path FindShortestPath(Graph graph, int startId, int endId) {
 		
-		List<Vertex> m_Unvisited = new ArrayList<Vertex>();
+		PriorityQueue<Vertex> m_Unvisited = new PriorityQueue<Vertex>(Comparator.comparing(Vertex::GetDistance));
 		
 		// Path from end to start
 		Path shortestPathEndToStart = new Path();
@@ -35,19 +33,21 @@ public class Dijkstra {
 			if (vertex.GetId() == startId) {
 				currentVertex = vertex;
 			}
-			
-			m_Unvisited.add(vertex);
-			vertex.Visited = false;
+			else {
+				m_Unvisited.add(vertex);
+				vertex.Visited = false;
+			}			
 		}
 		
 		// Distance of the start vertex is 0
 		currentVertex.SetDistance(0);
+		m_Unvisited.add(currentVertex);
 		
 		// While unvisited vertices exist calculate distances
 		while (m_Unvisited.size() != 0) {
 			
 			// Get Vertex with minimum distance to start
-			currentVertex = m_Unvisited.stream().min(Comparator.comparing(Vertex::GetDistance)).orElseThrow(NoSuchElementException::new);
+			currentVertex = m_Unvisited.poll();
 			
 			// Remove minimum distance vertex from unvisited
 			m_Unvisited.remove(currentVertex);
@@ -72,6 +72,9 @@ public class Dijkstra {
 				if(distance < neighbour.GetDistance()) {
 					neighbour.SetDistance(distance);
 					previousVertex[neighbour.GetId()] = currentVertex.GetId();
+					
+					m_Unvisited.remove(neighbour);
+					m_Unvisited.add(neighbour);
 				}
 			}
 			

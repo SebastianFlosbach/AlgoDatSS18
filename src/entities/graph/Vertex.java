@@ -59,7 +59,7 @@ public class Vertex {
 	
 	@Override
 	public String toString() {
-		return "Vertex [Id=" + m_Id + ", Edges=" + m_Edges.size() + "]";
+		return "Vertex [Id=" + m_Id + ", Distance=" + m_Distance + "]";
 	}
 
 }
