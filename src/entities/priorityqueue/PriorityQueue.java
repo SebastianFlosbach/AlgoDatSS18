@@ -1,12 +1,17 @@
 package entities.priorityqueue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PriorityQueue<T> {
 
 	private T m_ElementWithHighestPriority;
 	
+	private List<T> m_Roots;
+	
 	
 	public PriorityQueue() {
-		
+		m_Roots = new ArrayList<T>();
 	}
 	
 	
