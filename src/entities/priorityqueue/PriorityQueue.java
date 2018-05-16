@@ -5,13 +5,13 @@ import java.util.List;
 
 public class PriorityQueue<T> {
 
-	private T m_ElementWithHighestPriority;
+	private PriorityQueueElement<T> m_ElementWithHighestPriority;
 	
-	private List<T> m_Roots;
+	private List<PriorityQueueElement<T>> m_Roots;
 	
 	
 	public PriorityQueue() {
-		m_Roots = new ArrayList<T>();
+		m_Roots = new ArrayList<PriorityQueueElement<T>>();
 	}
 	
 	
@@ -20,14 +20,20 @@ public class PriorityQueue<T> {
 	}
 	
 	public void InsertWithPriority(T element, int priority) {
-		
+		PriorityQueueElement<T> newElement = new PriorityQueueElement<T>(element, priority, null, null);
+		m_Roots.add(newElement);
+	}
+	
+	public T GetHighestPriorityElement() {
+		return m_ElementWithHighestPriority.GetElement();
 	}
 	
 	public T PullHighestPriorityElement() {
-		return null;
-	}
-	
-	public T FindMinimum() {
+		T element = m_ElementWithHighestPriority.GetElement();	
+		m_Roots.remove(m_ElementWithHighestPriority);
+		
+		for(PriorityQueueElement<T> children : m_ElementWithHighestPriority)
+		
 		return null;
 	}
 	
