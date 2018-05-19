@@ -1,7 +1,5 @@
 package entities.priorityqueue;
 
-import java.util.Arrays;
-
 import entities.*;
 
 public class PriorityQueue<T extends QueueElement> {
@@ -9,79 +7,76 @@ public class PriorityQueue<T extends QueueElement> {
 	private PriorityQueueElement[] m_Queue;
 	private int[] m_Position;;
 	
-	private int nextElementId = 0;
+	private int lastElementId = 0;
 	
 	public boolean IsEmpty() {
 		return true;
 	}
 	
 	public PriorityQueue(int _size) {
-		m_Queue = new PriorityQueueElement[_size];
-		m_Position = new int[_size];
-		Arrays.fill(m_Position, -1);
+		m_Queue = new PriorityQueueElement[_size + 1];
+		m_Position = new int[_size + 1];
 	}
 	
 	public void Insert(T _element, float _priority) {
+		lastElementId++;
+		_element.SetQueueId(lastElementId);
 		
-		if(_element.GetQueueId() == -1 || m_Position[_element.GetQueueId()] == -1) {
-			
-			_element.SetQueueId(nextElementId);
-			
-			PriorityQueueElement pqElement = new PriorityQueueElement(_element, _priority);
-			
-			m_Queue[nextElementId] = pqElement;
-			
-			upHeap(nextElementId);
-			
-			nextElementId++;
-		}		
+		PriorityQueueElement pqElement = new PriorityQueueElement(_element, _priority);
+		
+		m_Queue[lastElementId] = pqElement;
+		m_Position[lastElementId] = lastElementId;
+		
+		upHeap(lastElementId);
 	}
 	
 	public boolean Update(QueueElement _element, float _priority) {
 		
-		if(m_Queue[m_Position[_element.GetQueueId()]].GetPriority() > _priority) {
-			m_Queue[m_Position[_element.GetQueueId()]].SetPriority(_priority);
-			upHeap(m_Position[_element.GetQueueId()]);
-			return true;
-		}
-		
-		return false;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public T Extract() {
-		T result = (T)m_Queue[0].GetElement();
 		
-		m_Position[result.GetQueueId()] = -1;
-		
-		PriorityQueueElement newestElement = m_Queue[nextElementId - 1];
-		
-		m_Queue[0] = newestElement;
-		
-		m_Position[((T)newestElement.GetElement()).GetQueueId()] = 0;
-		
-		nextElementId--;
-		
-		return result;
 	}
 	
 	private void upHeap(int index) {
-		int j = index / 2;
-		PriorityQueueElement pqElement = m_Queue[index];
+		int parentIndex = index / 2;
 		
-		while(j <= 1) {
-			if(pqElement.GetPriority() <= m_Queue[j].GetPriority())
+		PriorityQueueElement upElement = m_Queue[index];
+		PriorityQueueElement parentElement;
+		
+		while(parentIndex >= 0) {
+			
+			parentElement = m_Queue[parentIndex];
+			
+			if(upElement.GetPriority() <= parentElement.GetPriority())
 				break;
 			
-			m_Queue[index] = m_Queue[j];
-			index = j;
-			j = index / 2;
+			m_Queue[index] = parentElement;
+			m_Position[((T)parentElement.GetElement()).GetQueueId()] = index;
+			
+			index = parentIndex;
+			parentIndex = index / 2;
 		}
 		
-		m_Queue[index] = pqElement;
+		m_Queue[index] = upElement;
+		m_Position[((T)upElement.GetElement()).GetQueueId()] = index;
 	}
 	
 	private void downHeap(int index) {
+		int leftChildIndex = 2 * index;
+		int rightChildIndex = 2 * index + 1;
+		
+		PriorityQueueElement downElement = m_Queue[index];
+		
+		if(leftChildIndex < m_Queue.length) {
+			PriorityQueueElement leftChild = m_Queue[leftChildIndex];
+			if(downElement.GetPriority() > leftChild.GetPriority()) {
+				
+				m_Queue[index] = leftChild;
+				m_Position[]
+			}
+		}
+		
 	}
 	
 }

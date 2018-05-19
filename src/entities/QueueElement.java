@@ -2,7 +2,7 @@ package entities;
 
 public abstract class QueueElement {
 	
-	private int m_QueueId = -1;
+	private int m_QueueId = 0;
 	
 	public int GetQueueId() {
 		return m_QueueId;

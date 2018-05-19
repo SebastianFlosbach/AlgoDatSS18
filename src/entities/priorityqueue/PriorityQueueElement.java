@@ -22,4 +22,8 @@ class PriorityQueueElement {
 		m_Priority = _priority;
 	}
 		
+	@Override
+	public String toString() {
+		return "[Element: " + m_Element.toString() + ", Priority: " + m_Priority + "]";
+	}
 }
