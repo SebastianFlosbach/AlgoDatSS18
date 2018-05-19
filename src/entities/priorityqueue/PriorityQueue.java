@@ -1,40 +1,73 @@
 package entities.priorityqueue;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public class PriorityQueue<T> {
+import entities.*;
 
-	private PriorityQueueElement<T> m_ElementWithHighestPriority;
+public class PriorityQueue<T extends QueueElement> {
 	
-	private List<PriorityQueueElement<T>> m_Roots;
+	private PriorityQueueElement[] m_Queue;
+	private int[] m_Position;;
 	
-	
-	public PriorityQueue() {
-		m_Roots = new ArrayList<PriorityQueueElement<T>>();
-	}
-	
+	private int nextElementId = 0;
 	
 	public boolean IsEmpty() {
+		return true;
+	}
+	
+	public PriorityQueue(int _size) {
+		m_Queue = new PriorityQueueElement[_size];
+		m_Position = new int[_size];
+		Arrays.fill(m_Position, -1);
+	}
+	
+	public void Insert(T _element, float _priority) {
+		
+		if(_element.GetQueueId() == -1 || m_Position[_element.GetQueueId()] == -1) {
+			
+			_element.SetQueueId(nextElementId);
+			
+			PriorityQueueElement pqElement = new PriorityQueueElement(_element, _priority);
+			
+			m_Queue[nextElementId] = pqElement;
+			
+			upHeap(nextElementId);
+			
+			nextElementId++;
+		}		
+	}
+	
+	public boolean Update(QueueElement _element, float _priority) {
+		
+		if(m_Queue[m_Position[_element.GetQueueId()]].GetPriority() > _priority) {
+			m_Queue[m_Position[_element.GetQueueId()]].SetPriority(_priority);
+			upHeap(m_Position[_element.GetQueueId()]);
+			return true;
+		}
+		
 		return false;
 	}
 	
-	public void InsertWithPriority(T element, int priority) {
-		PriorityQueueElement<T> newElement = new PriorityQueueElement<T>(element, priority, null, null);
-		m_Roots.add(newElement);
-	}
-	
-	public T GetHighestPriorityElement() {
-		return m_ElementWithHighestPriority.GetElement();
-	}
-	
-	public T PullHighestPriorityElement() {
-		T element = m_ElementWithHighestPriority.GetElement();	
-		m_Roots.remove(m_ElementWithHighestPriority);
-		
-		for(PriorityQueueElement<T> children : m_ElementWithHighestPriority)
+	public T Extract() {
+		T result = (T)m_Queue[0].GetElement();
 		
 		return null;
+	}
+	
+	private void upHeap(int index) {
+		int j = index / 2;
+		PriorityQueueElement pqElement = m_Queue[index];
+		
+		while(j <= 1) {
+			if(pqElement.GetPriority() <= m_Queue[j].GetPriority())
+				break;
+			
+			m_Queue[index] = m_Queue[j];
+			index = j;
+			j = index / 2;
+		}
+		
+		m_Queue[index] = pqElement;
 	}
 	
 }

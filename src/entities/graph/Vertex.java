@@ -3,10 +3,9 @@ package entities.graph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex {
-	
-	// Values for dijkstra
-	private float m_Distance = Float.MAX_VALUE;
+import entities.QueueElement;
+
+public class Vertex extends QueueElement {
 	
 	public boolean Visited = false;
 	
@@ -16,15 +15,7 @@ public class Vertex {
 	
 	public int GetId() {
 		return m_Id;
-	}
-	
-	public float GetDistance() {
-		return m_Distance;
-	}
-	
-	public void SetDistance(float distance) {
-		m_Distance = distance;
-	}
+	}	
 	
 	public List<Edge> GetEdges(){
 		return m_Edges;
@@ -59,7 +50,7 @@ public class Vertex {
 	
 	@Override
 	public String toString() {
-		return "Vertex [Id=" + m_Id + ", Distance=" + m_Distance + "]";
+		return "Vertex [Id=" + m_Id + "]";
 	}
 
 }
