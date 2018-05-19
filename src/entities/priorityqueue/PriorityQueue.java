@@ -48,10 +48,21 @@ public class PriorityQueue<T extends QueueElement> {
 		return false;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public T Extract() {
 		T result = (T)m_Queue[0].GetElement();
 		
-		return null;
+		m_Position[result.GetQueueId()] = -1;
+		
+		PriorityQueueElement newestElement = m_Queue[nextElementId - 1];
+		
+		m_Queue[0] = newestElement;
+		
+		m_Position[((T)newestElement.GetElement()).GetQueueId()] = 0;
+		
+		nextElementId--;
+		
+		return result;
 	}
 	
 	private void upHeap(int index) {
@@ -68,6 +79,9 @@ public class PriorityQueue<T extends QueueElement> {
 		}
 		
 		m_Queue[index] = pqElement;
+	}
+	
+	private void downHeap(int index) {
 	}
 	
 }
