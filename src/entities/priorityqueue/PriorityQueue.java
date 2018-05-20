@@ -63,20 +63,33 @@ public class PriorityQueue<T extends QueueElement> {
 	}
 	
 	private void downHeap(int index) {
+		int smallestElementIndex = index;
+		
 		int leftChildIndex = 2 * index;
 		int rightChildIndex = 2 * index + 1;
 		
-		PriorityQueueElement downElement = m_Queue[index];
 		
-		if(leftChildIndex < m_Queue.length) {
-			PriorityQueueElement leftChild = m_Queue[leftChildIndex];
-			if(downElement.GetPriority() > leftChild.GetPriority()) {
-				
-				m_Queue[index] = leftChild;
-				m_Position[]
+		if(leftChildIndex < m_Queue.length) {			
+			if(m_Queue[leftChildIndex].GetPriority() < m_Queue[smallestElementIndex].GetPriority()) {
+				smallestElementIndex = leftChildIndex;
 			}
 		}
 		
+		if(rightChildIndex < m_Queue.length) {
+			if(m_Queue[rightChildIndex].GetPriority() < m_Queue[smallestElementIndex].GetPriority()) {
+				smallestElementIndex = rightChildIndex;
+			}
+		}
+		
+		if(smallestElementIndex != index) {
+			PriorityQueueElement swapElement = m_Queue[index];
+			m_Queue[index] = m_Queue[smallestElementIndex];
+			m_Queue[smallestElementIndex] = swapElement;
+			m_Position[((T)m_Queue[index].GetElement()).GetQueueId()] = index;
+			m_Position[((T)m_Queue[smallestElementIndex].GetElement()).GetQueueId()] = smallestElementIndex;		
+
+			downHeap(smallestElementIndex);
+		}	
 	}
 	
 }
