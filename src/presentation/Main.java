@@ -3,20 +3,27 @@ package presentation;
 import business.algorithm.Dijkstra;
 import entities.graph.Graph;
 import entities.graph.Path;
-import entities.graph.Vertex;
-import entities.priorityqueue.PriorityQueue;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		PriorityQueue<Vertex> pq = new PriorityQueue<Vertex>(8);
+		Graph graph = new Graph(5);
 		
-		pq.Insert(new Vertex(0), 2);
-		pq.Insert(new Vertex(1), 4);
-		pq.Insert(new Vertex(2), 8);
-		pq.Insert(new Vertex(3), 3);
-		pq.Insert(new Vertex(4), 1);
+		graph.AddEdge(1, 2, 1);
+		graph.AddEdge(1, 3, 1);
+		graph.AddEdge(2, 3, 4);
+		graph.AddEdge(2, 4, 4);
+		graph.AddEdge(3, 4, 1);
+		graph.AddEdge(3, 5, 4);
+		graph.AddEdge(4, 5, 1);
+		
+		Path path = Dijkstra.FindShortestPath(graph, 5, 2);
+		
+		for(int i = path.GetPathIds().size() - 1; i >= 0; i--) {
+			System.out.println(path.GetPathIds().get(i));
+		}
+		
 	}
 
 }

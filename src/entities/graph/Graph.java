@@ -13,8 +13,8 @@ public class Graph {
 	public Graph(int vertices) {
 		m_Vertices = new Vertex[vertices];
 		
-		for(int i = 0; i < vertices; i++) {
-			m_Vertices[i] = new Vertex(i);
+		for(int i = 1; i <= vertices; i++) {
+			m_Vertices[i - 1] = new Vertex(i);
 		}
 	}	
 	
@@ -29,7 +29,7 @@ public class Graph {
 	}
 	
 	public void AddEdge(int v1, int v2, float weight) {		
-		AddEdge(m_Vertices[v1], m_Vertices[v2], weight);
+		AddEdge(m_Vertices[v1 - 1], m_Vertices[v2 - 1], weight);
 	}
 	
 }

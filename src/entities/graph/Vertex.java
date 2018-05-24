@@ -3,15 +3,23 @@ package entities.graph;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.QueueElement;
-
-public class Vertex extends QueueElement {
-	
-	public boolean Visited = false;
+public class Vertex {
 	
 	private int m_Id;
 	
+	private float m_DistanceToSource;
+	
 	private List<Edge> m_Edges;
+	
+	public boolean Visited = false;	
+	
+	public float GetDistanceToSource() {
+		return m_DistanceToSource;
+	}
+	
+	public void SetDistanceToSource(float _distance) {
+		m_DistanceToSource = _distance;
+	}
 	
 	public int GetId() {
 		return m_Id;
@@ -50,7 +58,7 @@ public class Vertex extends QueueElement {
 	
 	@Override
 	public String toString() {
-		return "Vertex [Id=" + m_Id + "]";
+		return "Vertex [Id=" + m_Id + ", Distance=" + m_DistanceToSource + "]";
 	}
 
 }
