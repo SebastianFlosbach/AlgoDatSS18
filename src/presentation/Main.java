@@ -3,27 +3,27 @@ package presentation;
 import business.algorithm.Dijkstra;
 import entities.graph.Graph;
 import entities.graph.Path;
+import data.XmlGraphReader;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Graph graph = new Graph(5);
+		System.out.println("Program start");
 		
-		graph.AddEdge(1, 2, 1);
-		graph.AddEdge(1, 3, 1);
-		graph.AddEdge(2, 3, 4);
-		graph.AddEdge(2, 4, 4);
-		graph.AddEdge(3, 4, 1);
-		graph.AddEdge(3, 5, 4);
-		graph.AddEdge(4, 5, 1);
-		
-		Path path = Dijkstra.FindShortestPath(graph, 5, 2);
-		
-		for(int i = path.GetPathIds().size() - 1; i >= 0; i--) {
-			System.out.println(path.GetPathIds().get(i));
+		if(args.length > 0 && args[0] != null) {
+			XmlGraphReader reader = new XmlGraphReader(args[0]);
+			
+			Graph graph = reader.ReadGraph();
+			
+			Path path = Dijkstra.FindShortestPath(graph, 5, 2);
+			
+			System.out.println(path);
 		}
-		
+		else {
+			System.out.println("No valid argument");
+		}
+
 	}
 
 }

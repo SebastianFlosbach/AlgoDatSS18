@@ -26,4 +26,16 @@ public class Path {
 		m_PathIds.set((m_PathIds.size() - 1), id);
 	}
 	
+	@Override
+	public String toString() {
+		
+		String path = "";
+		
+		for(int waypoint : m_PathIds) {
+			path += "[Vertex: " + waypoint + "]\n";
+		}
+		
+		return path;
+	}
+	
 }

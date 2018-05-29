@@ -3,6 +3,8 @@ package entities.graph;
 
 public class Graph {
 	
+	//private int m_nextVertexId = 1;
+	
 	private Vertex[] m_Vertices;
 	
 	public Vertex[] GetVertices(){
