@@ -29,8 +29,11 @@ public class Prim {
             }
             for(int t = 0;t<n-1;t++)
             {
-                prio=-input[k][t];
+                //Prim
+                //prio=-input[k][t];
 
+                //Dijkstra
+                prio=-(input[k][t] + priority[k]);
                 if(priority[t]<0)
                 {
                     if(input[k][t]>0 && (priority[t]<prio))
@@ -47,11 +50,16 @@ public class Prim {
             }
         }while(min!=input.length);
 
-        System.out.println("Edges       Weights");
+        //Prim
+        //System.out.println("Edges       Weights");
 
-        for (int i=1;i<n-1;i++)
+        for (int i=0;i<n-1;i++)
         {
-            System.out.println(i+" - "+parent[i]+"           " + priority[i]);
+            //Prim
+            //System.out.println(i+" - "+parent[i]+"           " + priority[i]);
+
+            //Dijkstra
+            System.out.println("Der kürzeste Weg von der Wurzel zu " +i+" hat die Länge "+priority[i]);
         }
     }
 
