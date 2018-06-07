@@ -5,6 +5,8 @@ import entities.graph.Vertex;
 public class VertexPriorityQueue {
 	
 	private Vertex[] m_VertexHeap;
+	
+	// Positions of vertices
 	private int[] m_Position;
 	
 	private int m_CurrentIndex = 0;
@@ -171,6 +173,10 @@ public class VertexPriorityQueue {
 		}
 		
 		return false;
+	}
+	
+	public Vertex Peek() {
+		return m_VertexHeap[1];
 	}
 	
 	/**

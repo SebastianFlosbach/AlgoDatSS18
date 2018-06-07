@@ -18,12 +18,6 @@ public class Dijkstra {
 		// Currently visited vertex
 		Vertex currentVertex = null;
 		
-		// Initialize array that contains the id of the previous vertex in the shortest path to that vertex.
-		// For example, if the shortest path to vertex 2 is from vertex 6 then prev[2] = 6.
-		// If the vertex doesn't have a previous vertex it is -1.
-		int[] previousVertex = new int[graph.GetVertices().length + 1];
-		Arrays.fill(previousVertex, -1);
-		
 		// Add vertices to unvisited set distance of start vertex to 0
 		for (Vertex vertex : graph.GetVertices()) {
 			if (vertex.GetId() == startId) {
@@ -37,6 +31,8 @@ public class Dijkstra {
 			m_Unvisited.Insert(vertex);
 		}
 		
+		shortestPathEndToStart.AddWaypoint(m_Unvisited.Peek());
+		
 		// While unvisited vertices exist calculate distances
 		while (m_Unvisited.IsEmpty() == false) {
 			
@@ -46,6 +42,8 @@ public class Dijkstra {
 			// Exit loop if path to end vertex has been found
 			if(currentVertex.GetId() == endId)
 				break;
+			
+			Vertex nextVertex = null;
 			
 			// Calculate distance to each unvisited neighbour
 			for(Edge edge : currentVertex.GetEdges()) {
@@ -62,22 +60,15 @@ public class Dijkstra {
 				if(distance < neighbour.GetDistanceToSource()) {
 					neighbour.SetDistanceToSource(distance);
 					m_Unvisited.Update(neighbour);
-					previousVertex[neighbour.GetId()] = currentVertex.GetId();
-				}
-			}
+					nextVertex = neighbour;
+				}				
+			}		
 			
+			shortestPathEndToStart.AddWaypoint(nextVertex);
 		}
-		
-		int currentVertexId = endId;
-		
-		// Get path from end to start by reverse iteration
-		while(previousVertex[currentVertexId] != -1) {
-			shortestPathEndToStart.AddWaypoint(currentVertexId);
-			currentVertexId = previousVertex[currentVertexId];
-		}
-		shortestPathEndToStart.AddWaypoint(startId);
 		
 		return shortestPathEndToStart;
+		
 	}
 	
 }

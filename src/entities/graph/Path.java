@@ -5,25 +5,18 @@ import java.util.List;
 
 public class Path {
 	
-	private List<Integer> m_PathIds;
+	private List<Vertex> m_PathIds;
 	
-	public List<Integer> GetPathIds(){
+	public List<Vertex> GetPathIds(){
 		return m_PathIds;
 	}
 	
 	public Path() {
-		m_PathIds = new ArrayList<Integer>();
+		m_PathIds = new ArrayList<Vertex>();
 	}
 	
-	public void AddWaypoint(int id) {
-		m_PathIds.add(id);
-	}
-	
-	public void ChangeLastWaypoint(int id) {
-		if(m_PathIds.isEmpty())
-			return;
-		
-		m_PathIds.set((m_PathIds.size() - 1), id);
+	public void AddWaypoint(Vertex _vertex) {
+		m_PathIds.add(_vertex);
 	}
 	
 	@Override
@@ -31,8 +24,8 @@ public class Path {
 		
 		String path = "";
 		
-		for(int waypoint : m_PathIds) {
-			path += "[Vertex: " + waypoint + "]\n";
+		for(Vertex waypoint : m_PathIds) {
+			path += waypoint + "\n";
 		}
 		
 		return path;
