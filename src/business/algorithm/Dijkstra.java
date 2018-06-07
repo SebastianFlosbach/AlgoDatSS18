@@ -18,7 +18,7 @@ public class Dijkstra {
 		// Currently visited vertex
 		Vertex currentVertex = null;
 		
-		// Add vertices to unvisited set distance of start vertex to 0
+		// Add vertices to unvisited, set distance of start vertex to 0
 		for (Vertex vertex : graph.GetVertices()) {
 			if (vertex.GetId() == startId) {
 				vertex.SetDistanceToSource(0);			
@@ -64,7 +64,8 @@ public class Dijkstra {
 				}				
 			}		
 			
-			shortestPathEndToStart.AddWaypoint(nextVertex);
+			if(nextVertex != null)
+				shortestPathEndToStart.AddWaypoint(nextVertex);
 		}
 		
 		return shortestPathEndToStart;
