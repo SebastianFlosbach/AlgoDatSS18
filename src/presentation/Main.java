@@ -14,6 +14,8 @@ public class Main {
 			
 			Graph graph = reader.ReadGraph();
 			
+			float[][] adjmatrix = graph.GetAdjacentMatrix();
+			
 			if(graph == null)
 				return;
 			

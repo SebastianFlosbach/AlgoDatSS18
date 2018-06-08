@@ -56,6 +56,28 @@ public class Vertex {
 		return neighbours;
 	}
 	
+	/**
+	 * Get distance to another vertex
+	 * @param _vertex
+	 * @return
+	 */
+	public float GetDistanceToVertex(Vertex _vertex) {
+		
+		if(this.equals(_vertex))
+			return 0f;
+		
+		float distance = Float.MAX_VALUE;
+		
+		for(Edge edge : this.GetEdges()) {
+			if(edge.GetNeighbour(this).equals(_vertex)) {
+				distance = edge.GetWeight();
+				break;
+			}
+		}
+		
+		return distance;	
+	}
+	
 	@Override
 	public String toString() {
 		return "Vertex [Id=" + m_Id + ", Distance=" + m_DistanceToSource + "]";
