@@ -37,7 +37,7 @@ public class Graph {
 		AddEdge(m_Vertices[v1 - 1], m_Vertices[v2 - 1], weight);
 	}
 	
-	public float[][] GetAdjacentMatrix(){
+	public float[][] GetAdjacencyMatrix(){
 		
 		float[][] matrix = new float[m_Vertices.length][m_Vertices.length];
 		
@@ -54,7 +54,7 @@ public class Graph {
 		return matrix;
 	}
 	
-	public static Graph GetGraphFromAdjacentMatrix() {
+	public static Graph GetGraphFromAdjacencyMatrix() {
 		throw new NotImplementedException();
 	}
 	

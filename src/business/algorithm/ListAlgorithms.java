@@ -3,10 +3,10 @@ package business.algorithm;
 import entities.graph.*;
 import entities.priorityqueue.VertexPriorityQueue;
 
-public class Dijkstra {
+public class ListAlgorithms {
 	
 
-	public static Path FindShortestPath(Graph graph, int startId, int endId) {
+	public static Path Dijkstra(Graph graph, int startId, int endId) {
 		
 		VertexPriorityQueue m_Unvisited = new VertexPriorityQueue(graph.GetVertices().length);
 		

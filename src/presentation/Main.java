@@ -1,6 +1,6 @@
 package presentation;
 
-import business.algorithm.Dijkstra;
+import business.algorithm.ListAlgorithms;
 import entities.graph.Graph;
 import entities.graph.Path;
 import data.XmlGraphReader;
@@ -14,12 +14,10 @@ public class Main {
 			
 			Graph graph = reader.ReadGraph();
 			
-			float[][] adjmatrix = graph.GetAdjacentMatrix();
-			
 			if(graph == null)
 				return;
 			
-			Path path = Dijkstra.FindShortestPath(graph, 5, 2);
+			Path path = ListAlgorithms.Dijkstra(graph, 5, 2);
 			
 			System.out.println(path);
 		}
