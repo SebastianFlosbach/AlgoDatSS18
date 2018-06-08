@@ -6,12 +6,9 @@ import entities.priorityqueue.VertexPriorityQueue;
 public class ListAlgorithms {
 	
 
-	public static Path Dijkstra(Graph graph, int startId, int endId) {
+	public static void Dijkstra(Graph graph, int startId, int endId) {
 		
 		VertexPriorityQueue m_Unvisited = new VertexPriorityQueue(graph.GetVertices().length);
-		
-		// Path from end to start
-		Path shortestPathEndToStart = new Path();
 		
 		// Currently visited vertex
 		Vertex currentVertex = null;
@@ -29,8 +26,6 @@ public class ListAlgorithms {
 			m_Unvisited.Insert(vertex);
 		}
 		
-		shortestPathEndToStart.AddWaypoint(m_Unvisited.Peek());
-		
 		// While unvisited vertices exist calculate distances
 		while (m_Unvisited.IsEmpty() == false) {
 			
@@ -40,8 +35,6 @@ public class ListAlgorithms {
 			// Exit loop if path to end vertex has been found
 			if(currentVertex.GetId() == endId)
 				break;
-			
-			Vertex nextVertex = null;
 			
 			// Calculate distance to each unvisited neighbour
 			for(Edge edge : currentVertex.GetEdges()) {
@@ -58,16 +51,9 @@ public class ListAlgorithms {
 				if(distance < neighbour.GetDistanceToSource()) {
 					neighbour.SetDistanceToSource(distance);
 					m_Unvisited.Update(neighbour);
-					nextVertex = neighbour;
 				}				
 			}		
-			
-			if(nextVertex != null)
-				shortestPathEndToStart.AddWaypoint(nextVertex);
 		}
-		
-		return shortestPathEndToStart;
-		
 	}
 	
 }
