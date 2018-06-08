@@ -14,6 +14,9 @@ public class Main {
 			
 			Graph graph = reader.ReadGraph();
 			
+			if(graph == null)
+				return;
+			
 			Path path = Dijkstra.FindShortestPath(graph, 5, 2);
 			
 			System.out.println(path);

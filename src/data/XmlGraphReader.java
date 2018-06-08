@@ -37,7 +37,7 @@ public class XmlGraphReader {
 		try {
 			document = m_DocumentBuilder.parse(new FileInputStream(m_Path));
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error: Could not find specified path!");
 			return null;
 		}
 		
