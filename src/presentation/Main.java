@@ -1,7 +1,7 @@
 package presentation;
 
 import business.algorithm.Dijkstra;
-import business.algorithm.Prim;
+import business.algorithm.MatrixPriorityFirst;
 import entities.graph.Graph;
 import entities.graph.Path;
 import data.XmlGraphReader;
@@ -28,9 +28,11 @@ public class Main {
 
 		int input[][] = new int[][]{{0,2,0,6,0},{2,0,3,8,5},{0,3,0,0,7},{6,8,0,0,9},{0,5,7,9,0}};
 
-		Prim test = new Prim();
+		MatrixPriorityFirst test = new MatrixPriorityFirst();
 
-		test.MatrixPriorityFirst(input);
+		test.doDijkstra(input);
+
+		test.doPrim(input);
 	}
 
 }
