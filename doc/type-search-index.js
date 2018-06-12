@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"entities.graph","l":"Edge"},{"p":"entities.graph","l":"Graph"},{"p":"business.algorithm","l":"ListAlgorithms"},{"p":"presentation","l":"Main"},{"p":"business.algorithm","l":"MatrixPriorityFirst"},{"p":"entities.graph","l":"Path"},{"p":"entities.graph","l":"Vertex"},{"p":"entities.priorityqueue","l":"VertexPriorityQueue"},{"p":"data","l":"XmlGraphReader"}]

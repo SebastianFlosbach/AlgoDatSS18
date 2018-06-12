@@ -1,5 +1,7 @@
 package presentation;
 
+import java.io.IOException;
+
 import business.algorithm.ListAlgorithms;
 import business.algorithm.MatrixPriorityFirst;
 import entities.graph.Graph;
@@ -10,15 +12,27 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		if(args.length > 0 && args[0] != null) {
-			
-		}
-		else {
-			// Default test programm
-			
-			
-		}
+		System.out.println("Djikstra/Prim Test Program");
+		System.out.println("--------------------------");
+		System.out.println();
+		System.out.print("Select graph: ");
 		
+		String input = System.console().readLine();
+		
+		clearConsole();
+		
+	}
+	
+	static void clearConsole() {
+		try {
+			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
