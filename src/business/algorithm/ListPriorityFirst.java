@@ -11,7 +11,7 @@ import entities.priorityqueue.VertexPriorityQueue;
 public class ListPriorityFirst {
 	
 	/**
-	 * Execute Dijkstras algorithm on a graph with specific start Vertex
+	 * Execute Dijkstra's algorithm on a graph with specific start Vertex
 	 * @param graph Graph to execute on
 	 * @param startId Id of the start Vertex
 	 */
@@ -63,9 +63,9 @@ public class ListPriorityFirst {
 	}
 	
 	/**
-	 * 
-	 * @param graph
-	 * @param startId
+	 * Execute Prim's algorithm on a graph with specific start Vertex
+	 * @param graph Graph to execute on
+	 * @param startId Id of the start Vertex
 	 */
 	public static void Prim(Graph graph, int startId) {
 		
