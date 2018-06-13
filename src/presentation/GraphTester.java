@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import business.algorithm.ListPriorityFirst;
+import business.algorithm.MatrixPriorityFirst;
+import entities.graph.Graph;
+import data.XmlGraphReader;
+
 public class GraphTester {
 
 	private String m_PathToGraphs;
@@ -20,6 +25,10 @@ public class GraphTester {
 		
 		return m_ListOfGraphs;
 	}
+	
+	private Graph currentGraph;
+	private Algorithm algorithm;
+	private ExecutionType executionType;
 	
 	public GraphTester(String _pathToGraphs) {
 		m_PathToGraphs = _pathToGraphs;
@@ -37,7 +46,13 @@ public class GraphTester {
 			
 			switch (viewState) {
 			case Initial:
-				printInitial();
+				viewState = printInitial();
+				break;
+			case AlgoSelection:
+				viewState = printAlgoSelection();
+				break;
+			case Graph:
+				viewState = printGraph();
 				break;
 			default:
 				break;
@@ -59,6 +74,22 @@ public class GraphTester {
 	private enum ViewState {
 		Initial,
 		Graph,
+		AlgoSelection,
+	}
+	
+	private enum Algorithm {
+		Dijkstra,
+		Prim,
+	}
+	
+	private enum ExecutionType {
+		Matrix,
+		List,
+	}
+	
+	private Graph GetGraphFromFile(File file) {
+		XmlGraphReader reader = new XmlGraphReader(file.getAbsolutePath());
+		return reader.ReadGraph();
 	}
 	
 	private void printHeader() {
@@ -67,7 +98,7 @@ public class GraphTester {
 		System.out.println();
 	}
 	
-	private void printInitial() {
+	private ViewState printInitial() {
 		System.out.println("Available graphs:");
 		
 		for(File graphFile : GetListOfGraphs()) {
@@ -79,7 +110,149 @@ public class GraphTester {
 		
 		String input = System.console().readLine();
 		
+		for(File graphFile : GetListOfGraphs()) {
+			if(graphFile.getName().equals(input)) {
+				currentGraph = GetGraphFromFile(graphFile);
+				break;
+			}
+		}
+		
+		if(currentGraph == null)
+		{
+			System.out.println("This graph does not exist!");
+			System.out.println("Press Enter to continue...");
+			System.console().readLine();
+			return ViewState.Initial;
+		}
+		else {
+			return ViewState.AlgoSelection;
+		}
+		
+		
 		
 	}
+		
+	private ViewState printAlgoSelection() {
+		
+		System.out.println("1. Dijkstra");
+		System.out.println("2. Prim");
+		System.out.print("Choose algorithm: ");
+		
+		String algo = System.console().readLine();
+		System.out.println();
+		
+		int selection = 0;
+		
+		try {
+			selection = Integer.parseInt(algo);
+		} catch (Exception e) {
+			System.out.println("Input was not a number!");
+			System.out.println("Press Enter to continue...");
+			System.console().readLine();
+			return ViewState.AlgoSelection;
+		}
+		
+		if(selection == 1)
+		{
+			algorithm = Algorithm.Dijkstra;
+		}
+		else if(selection == 2) {
+			algorithm = Algorithm.Prim;
+		}
+		else {
+			System.out.println("Input was not 1 or 2!");
+			System.out.println("Press Enter to continue...");
+			System.console().readLine();
+			return ViewState.AlgoSelection;
+		}
+		
+		System.out.println("1. MatrixPriorityFirst");
+		System.out.println("2. PriorityQueue");
+		System.out.print("Choose type of execution: ");
+		
+		String type = System.console().readLine();
+		System.out.println();
+		
+		selection = 0;
+		
+		try {
+			selection = Integer.parseInt(type);
+		} catch (Exception e) {
+			System.out.println("Input was not a number!");
+			System.out.println("Press Enter to continue...");
+			System.console().readLine();
+			return ViewState.AlgoSelection;
+		}
+		
+		if(selection == 1)
+		{
+			executionType = ExecutionType.Matrix;
+		}
+		else if(selection == 2) {
+			executionType = ExecutionType.List;
+		}
+		else {
+			System.out.println("Input was not 1 or 2!");
+			System.out.println("Press Enter to continue...");
+			System.console().readLine();
+			return ViewState.AlgoSelection;
+		}
+		
+		return ViewState.Graph;
+	}
 	
+	private ViewState printGraph() {
+		
+		if(algorithm == Algorithm.Dijkstra)
+			System.out.print("Executing Dijkstra as ");
+		else if(algorithm == Algorithm.Prim)
+			System.out.print("Executing Prim as ");
+		
+		if(executionType == ExecutionType.Matrix)
+			System.out.println("Matrix Priority-First");
+		else if(executionType == ExecutionType.List)
+			System.out.println("List Priority-First");
+		
+		System.out.println();
+		
+		if(algorithm == Algorithm.Prim) {			
+			if(executionType == ExecutionType.Matrix) {
+				MatrixPriorityFirst mpf = new MatrixPriorityFirst();
+				
+				System.out.println("Befor as adjacency matrix:");
+				System.out.println();
+				MatrixPriorityFirst.printMatrix(currentGraph.GetAdjacencyMatrix());
+				
+				System.out.println("After Prim:");
+				System.out.println();
+				mpf.doPrim(currentGraph.GetAdjacencyMatrix());		
+			}
+			else if(executionType == ExecutionType.List) {
+				ListPriorityFirst.Prim(currentGraph, 1);
+				System.out.println(currentGraph);
+			}
+		}
+		else if(algorithm == Algorithm.Dijkstra) {			
+			if(executionType == ExecutionType.Matrix) {
+				MatrixPriorityFirst mpf = new MatrixPriorityFirst();
+				
+				System.out.println("Befor as adjacency matrix");
+				System.out.println();
+				MatrixPriorityFirst.printMatrix(currentGraph.GetAdjacencyMatrix());
+				
+				System.out.println("After Dijkstra:");
+				System.out.println();
+				mpf.doDijkstra(currentGraph.GetAdjacencyMatrix());
+			}
+			else if(executionType == ExecutionType.List) {
+				ListPriorityFirst.Dijkstra(currentGraph, 1);
+				System.out.println(currentGraph);
+			}
+		}
+		
+		System.out.println();
+		System.out.println("Press Enter to continue...");
+		System.console().readLine();
+		return ViewState.Initial;
+	}
 }

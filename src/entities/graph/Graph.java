@@ -42,7 +42,7 @@ public class Graph {
 		float[][] matrix = new float[m_Vertices.length][m_Vertices.length];
 		
 		for(float[] var : matrix) {
-			Arrays.fill(var, Float.MAX_VALUE);
+			Arrays.fill(var, -(Integer.MAX_VALUE - 1));
 		}
 		
 		for(Vertex vertex : m_Vertices) {
@@ -56,6 +56,21 @@ public class Graph {
 	
 	public static Graph GetGraphFromAdjacencyMatrix() {
 		throw new NotImplementedException();
+	}
+	
+	@Override
+	public String toString() {
+		String graphString = "";
+		
+		for(Vertex v : m_Vertices) {
+			graphString += v.toString() + " with distance to source " + v.GetDistanceToSource() + "\n";
+			
+			for(Edge e : v.GetEdges()) {
+				graphString += "\tTo " + e.GetNeighbour(v) + " with weight " + e.GetWeight() + "\n";
+			}
+		}
+		
+		return graphString;
 	}
 	
 }

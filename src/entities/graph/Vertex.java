@@ -112,7 +112,7 @@ public class Vertex {
 	
 	@Override
 	public String toString() {
-		return "Vertex [Id=" + m_Id + ", Distance=" + m_DistanceToSource + "]";
+		return "Vertex [Id=" + m_Id + "]";
 	}
 
 }

@@ -2,7 +2,7 @@ package presentation;
 
 import java.io.IOException;
 
-import business.algorithm.ListAlgorithms;
+import business.algorithm.ListPriorityFirst;
 import business.algorithm.MatrixPriorityFirst;
 import entities.graph.Graph;
 import entities.graph.Path;

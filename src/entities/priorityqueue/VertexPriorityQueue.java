@@ -165,9 +165,10 @@ public class VertexPriorityQueue {
 	 * @param _vertex Vertex that changed
 	 * @return True if update was successful
 	 */
-	public boolean Update(Vertex _vertex) {
+	public boolean Update(Vertex _vertex, float _value) {
 		
 		if(getVertexPosition(_vertex) > 0) {
+			m_VertexHeap[getVertexPosition(_vertex)].SetDistanceToSource(_value);
 			upHeap(getVertexPosition(_vertex));
 			return true;
 		}

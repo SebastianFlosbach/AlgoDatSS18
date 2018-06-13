@@ -5,7 +5,7 @@ public class MatrixPriorityFirst {
     /**
      * value which is used for the initialization
      */
-    private final int infinite = Integer.MAX_VALUE - 1;
+    private static final int infinite = Integer.MAX_VALUE - 1;
     /**
      * Prim: distance from the vertex with the index to the parent vertex
      *
@@ -23,23 +23,19 @@ public class MatrixPriorityFirst {
 
 
     /**
-     *do Prim's algorithm with the input and print the MST as an adjacency matrix
+     * Do Prim's algorithm with the input and print the MST as an adjacency matrix
      * @param input: input graph as an adjacency matrix
      *
      */
-    public void doPrim(int input[][])
+    public void doPrim(float input[][])
     {
-
-        System.out.println("Prim's algorithm");
-
         int n = input.length+1;
         parent = new int[n];
         priority = new float[n];
         output = new float[n-1][n-1];
 
         Init();
-
-
+        
         int min=0;
         int k;
         float prio;
@@ -83,14 +79,12 @@ public class MatrixPriorityFirst {
     }
 
     /**
-     *do Dijkstra's algorithm with the input and print the new graph as an adjacency matrix
+     * Do Dijkstra's algorithm with the input and print the new graph as an adjacency matrix
      * @param input: input graph as an adjacency matrix
      *
      */
-    public void doDijkstra(int input[][])
+    public void doDijkstra(float input[][])
     {
-        System.out.println("Dijkstra's algorithm");
-
         int n = input.length+1;
         parent = new int[n];
         priority = new float[n];
@@ -132,7 +126,7 @@ public class MatrixPriorityFirst {
 
         for (int i=0;i<n-1;i++)
         {
-            System.out.println("Der kürzeste Weg von der Wurzel zu " +i+" hat die Länge "+priority[i]);
+            System.out.println("The shortest path from root to " + i + " has length " + priority[i]);
             output[i][parent[i]]=priority[i]-priority[parent[i]];
             output[parent[i]][i]=priority[i]-priority[parent[i]];
         }
@@ -162,9 +156,8 @@ public class MatrixPriorityFirst {
      * print an matrix on the console
      * @param output: an adjacency matrix
      */
-    private void printMatrix(float[][] output)
+    public static void printMatrix(float[][] output)
     {
-        System.out.println("Print adjacency matrix");
         for(int i = 0;i<output.length;i++)
         {
             for(int j=0;j<output.length;j++)
@@ -177,8 +170,9 @@ public class MatrixPriorityFirst {
                     System.out.print(output[i][j] + " ");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
+        System.out.println();
     }
 
 }
