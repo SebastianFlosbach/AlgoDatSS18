@@ -1,5 +1,10 @@
 package business.algorithm;
 
+/**
+ * This class implements Dijkstra's and Prim's algorithm with an adjacency matrix.
+ * @author David
+ *
+ */
 public class MatrixPriorityFirst {
 
     /**
@@ -75,6 +80,7 @@ public class MatrixPriorityFirst {
             output[i][parent[i]]=priority[i];
             output[parent[i]][i]=priority[i];
         }
+        System.out.println();
         printMatrix(output);
     }
 
@@ -130,6 +136,7 @@ public class MatrixPriorityFirst {
             output[i][parent[i]]=priority[i]-priority[parent[i]];
             output[parent[i]][i]=priority[i]-priority[parent[i]];
         }
+        System.out.println();
         printMatrix(output);
     }
 

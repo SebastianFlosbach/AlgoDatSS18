@@ -54,6 +54,7 @@ public class ListPriorityFirst {
 				
 				// If distance is smaller than neighbours shortest distance set that neighbours distance
 				if(distance < neighbour.GetDistance()) {
+					neighbour.SetParent(currentVertex);
 					m_Unvisited.Update(neighbour, distance);
 				}				
 			}
@@ -105,6 +106,7 @@ public class ListPriorityFirst {
 				float distance = edge.GetWeight();
 				
 				if(distance < neighbour.GetDistance()) {
+					neighbour.SetParent(currentVertex);
 					m_Unvisited.Update(neighbour, distance);	
 				}
 			}		

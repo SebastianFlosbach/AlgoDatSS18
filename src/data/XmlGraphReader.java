@@ -12,6 +12,11 @@ import org.w3c.dom.Node;
 
 import entities.graph.Graph;
 
+/**
+ * This class implements the functionality to read a Graph from an Xml-File
+ * @author Sebastian
+ *
+ */
 public class XmlGraphReader {
 	
 	private String m_Path;
@@ -19,6 +24,10 @@ public class XmlGraphReader {
 	private DocumentBuilderFactory m_DocumentBuilderFactory;
 	private DocumentBuilder m_DocumentBuilder = null;
 	
+	/**
+	 * Create a new instance of this class
+	 * @param _path Path to the xml file
+	 */
 	public XmlGraphReader(String _path) {
 		m_Path = _path;
 		m_DocumentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -30,6 +39,10 @@ public class XmlGraphReader {
 		}
 	}
 	
+	/**
+	 * Reads the Xml-File and creates a Graph object from it
+	 * @return A new Graph from Xml
+	 */
 	public Graph ReadGraph() {
 		
 		Document document = null;

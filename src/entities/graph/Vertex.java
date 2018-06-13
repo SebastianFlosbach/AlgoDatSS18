@@ -30,6 +30,16 @@ public class Vertex {
 		return m_Distance;
 	}
 	
+	private Vertex m_Parent;
+	
+	public Vertex GetParent() {
+		return m_Parent;
+	}
+	
+	public void SetParent(Vertex v) {
+		m_Parent = v;
+	}
+	
 	/**
 	 * Set distance to a specific vertex depending on the used algorithm.
 	 * @param _distance The new distance
@@ -67,7 +77,7 @@ public class Vertex {
 
 	/**
 	 * Add Edge to this vertex
-	 * @param edge
+	 * @param edge The edge to add
 	 */
 	public void AddEdge(Edge edge) {
 		if(m_Edges.contains(edge) == false) {
@@ -95,7 +105,7 @@ public class Vertex {
 	
 	/**
 	 * Get distance to another vertex
-	 * @param _vertex
+	 * @param _vertex Vertex to get distance to
 	 * @return Distance to vertex, 0 if vertex is the same, Float.MAX_VALUE if vertices aren't neighbors
 	 */
 	public float GetDistanceToVertex(Vertex _vertex) {

@@ -17,7 +17,7 @@ public class Graph {
 	
 	/**
 	 * Get an array of all vertices from graph
-	 * @return
+	 * @return Array of all vertices
 	 */
 	public Vertex[] GetVertices(){
 		return m_Vertices;
@@ -93,17 +93,19 @@ public class Graph {
 	}
 
 	/**
-	 *
-	 * @return the list of the MST after prim
+	 * Get a string of the graph reduced to the parent connections
+	 * @return String of the reduced graph
 	 */
-	public String printPrim() {
+	public String GetReducedGraphToString() {
 		String graphString = "";
 
 		for(Vertex v : m_Vertices) {
 
+			graphString += v.toString() + " with distance " + v.GetDistance() + "\n";
+			
 			for(Edge e : v.GetEdges()) {
-				if(v.GetDistance()==e.GetWeight()) {
-					graphString += v.toString()+"\tTo " + e.GetNeighbour(v) + " with weight " + e.GetWeight() + "\n";
+				if(e.GetNeighbour(v).GetParent() == v) {
+					graphString += "\tTo " + e.GetNeighbour(v) + " with weight " + e.GetWeight() + "\n";
 				}
 			}
 		}
@@ -111,21 +113,12 @@ public class Graph {
 		return graphString;
 	}
 
-	/**
-	 *
-	 * @return the list after dijkstra´s algorithm
-	 */
-	public String printDijkstra() {
-		//TODO ausgabe dijkstra
-		return "Dijkstra´s list";
-	}
-
 	@Override
 	public String toString() {
 		String graphString = "";
 		
 		for(Vertex v : m_Vertices) {
-			graphString += v.toString() + " with distance to source " + v.GetDistance() + "\n";
+			graphString += v.toString() + "\n";
 			
 			for(Edge e : v.GetEdges()) {
 				graphString += "\tTo " + e.GetNeighbour(v) + " with weight " + e.GetWeight() + "\n";

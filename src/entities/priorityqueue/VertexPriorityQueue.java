@@ -161,21 +161,28 @@ public class VertexPriorityQueue {
 	}
 	
 	/**
-	 * Update the queue after a vertex has changed
-	 * @param _vertex Vertex that changed
+	 * Update a vertex in the queue
+	 * @param _vertex Vertex to update
+	 * @param _value The updated value
 	 * @return True if update was successful
 	 */
 	public boolean Update(Vertex _vertex, float _value) {
 		
 		if(getVertexPosition(_vertex) > 0) {
-			m_VertexHeap[getVertexPosition(_vertex)].SetDistance(_value);
-			upHeap(getVertexPosition(_vertex));
-			return true;
+			if(_value < m_VertexHeap[getVertexPosition(_vertex)].GetDistance()) {
+				m_VertexHeap[getVertexPosition(_vertex)].SetDistance(_value);
+				upHeap(getVertexPosition(_vertex));
+				return true;
+			}
 		}
 		
 		return false;
 	}
 	
+	/**
+	 * Peek at the top vertex instead of pulling
+	 * @return The top vertex
+	 */
 	public Vertex Peek() {
 		return m_VertexHeap[1];
 	}
