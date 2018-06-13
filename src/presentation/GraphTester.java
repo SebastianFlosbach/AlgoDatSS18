@@ -8,6 +8,11 @@ import business.algorithm.MatrixPriorityFirst;
 import entities.graph.Graph;
 import data.XmlGraphReader;
 
+/**
+ * Interface to test Dijkstra's and Prim's algorithm with different graphs 
+ * @author Sebastian
+ *
+ */
 public class GraphTester {
 
 	private String m_PathToGraphs;
@@ -32,6 +37,9 @@ public class GraphTester {
 		m_PathToGraphs = _pathToGraphs;
 	}
 	
+	/**
+	 * Run the draw loop
+	 */
 	public void Run() {
 		
 		boolean isRunning = true;
