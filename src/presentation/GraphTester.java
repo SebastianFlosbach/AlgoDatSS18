@@ -244,7 +244,7 @@ public class GraphTester {
 				
 				System.out.println("After Prim:");
 				System.out.println();
-				System.out.println(currentGraph);
+				System.out.println(currentGraph.printPrim());
 			}
 		}
 		else if(algorithm == Algorithm.Dijkstra) {			
@@ -254,7 +254,7 @@ public class GraphTester {
 			}
 			else if(executionType == ExecutionType.List) {
 				ListPriorityFirst.Dijkstra(currentGraph, 1);
-				System.out.println(currentGraph);
+				System.out.println(currentGraph.printDijkstra());
 			}
 		}
 		
