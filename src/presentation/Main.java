@@ -12,27 +12,19 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Djikstra/Prim Test Program");
-		System.out.println("--------------------------");
-		System.out.println();
-		System.out.print("Select graph: ");
+		if(args != null && args.length > 0) {
+			GraphTester tester = new GraphTester(args[0]);
+			
+			tester.Run();
+		}
+		else {
+			System.out.println("Missing argument: Path to graphs!");
+		}
 		
-		String input = System.console().readLine();
 		
-		clearConsole();
 		
 	}
 	
-	static void clearConsole() {
-		try {
-			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 
 }
