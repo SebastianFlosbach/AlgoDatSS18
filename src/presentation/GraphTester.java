@@ -254,7 +254,7 @@ public class GraphTester {
 			}
 			else if(executionType == ExecutionType.List) {
 				ListPriorityFirst.Dijkstra(currentGraph, 1);
-				System.out.println(currentGraph);
+				System.out.println(currentGraph.printDijkstra());
 			}
 		}
 		
