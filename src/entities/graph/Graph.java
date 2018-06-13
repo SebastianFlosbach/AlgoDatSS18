@@ -91,7 +91,35 @@ public class Graph {
 		
 		return matrix;
 	}
-	
+
+	/**
+	 *
+	 * @return the list of the MST after prim
+	 */
+	public String printPrim() {
+		String graphString = "";
+
+		for(Vertex v : m_Vertices) {
+
+			for(Edge e : v.GetEdges()) {
+				if(v.GetDistance()==e.GetWeight()) {
+					graphString += v.toString()+"\tTo " + e.GetNeighbour(v) + " with weight " + e.GetWeight() + "\n";
+				}
+			}
+		}
+
+		return graphString;
+	}
+
+	/**
+	 *
+	 * @return the list after dijkstra´s algorithm
+	 */
+	public String printDijkstra() {
+		//TODO ausgabe dijkstra
+		return "Dijkstra´s list";
+	}
+
 	@Override
 	public String toString() {
 		String graphString = "";
