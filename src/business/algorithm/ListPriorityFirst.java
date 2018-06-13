@@ -25,11 +25,11 @@ public class ListPriorityFirst {
 		// Add vertices to unvisited, set distance of start vertex to 0
 		for (Vertex vertex : graph.GetVertices()) {
 			if (vertex.GetId() == startId) {
-				vertex.SetDistanceToSource(0);			
+				vertex.SetDistance(0);			
 			}
 			else
 			{
-				vertex.SetDistanceToSource(Float.MAX_VALUE);				
+				vertex.SetDistance(Float.MAX_VALUE);				
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -50,16 +50,23 @@ public class ListPriorityFirst {
 					continue;
 				
 				// Distance to current neighbour
-				float distance = currentVertex.GetDistanceToSource() + edge.GetWeight();
+				float distance = currentVertex.GetDistance() + edge.GetWeight();
 				
 				// If distance is smaller than neighbours shortest distance set that neighbours distance
-				if(distance < neighbour.GetDistanceToSource()) {
+				if(distance < neighbour.GetDistance()) {
 					m_Unvisited.Update(neighbour, distance);
 				}				
-			}		
+			}
+			
+			currentVertex.Visited = true;
 		}
 	}
 	
+	/**
+	 * 
+	 * @param graph
+	 * @param startId
+	 */
 	public static void Prim(Graph graph, int startId) {
 		
 		VertexPriorityQueue m_Unvisited = new VertexPriorityQueue(graph.GetVertices().length);
@@ -70,11 +77,11 @@ public class ListPriorityFirst {
 		// Add vertices to unvisited, set distance of start vertex to 0
 		for (Vertex vertex : graph.GetVertices()) {
 			if (vertex.GetId() == startId) {
-				vertex.SetDistanceToSource(0);			
+				vertex.SetDistance(0);			
 			}
 			else
 			{
-				vertex.SetDistanceToSource(Float.MAX_VALUE);				
+				vertex.SetDistance(Float.MAX_VALUE);				
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -97,7 +104,9 @@ public class ListPriorityFirst {
 				// Distance to current neighbour
 				float distance = edge.GetWeight();
 				
-				m_Unvisited.Update(neighbour, distance);			
+				if(distance < neighbour.GetDistance()) {
+					m_Unvisited.Update(neighbour, distance);	
+				}
 			}		
 		}
 	}

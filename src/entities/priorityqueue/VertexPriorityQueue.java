@@ -59,7 +59,7 @@ public class VertexPriorityQueue {
 		while(parentIndex > 0) {
 			
 			// If current vertex has a lower priority than its parent swap them
-			if(m_VertexHeap[_index].GetDistanceToSource() < m_VertexHeap[parentIndex].GetDistanceToSource()) {
+			if(m_VertexHeap[_index].GetDistance() < m_VertexHeap[parentIndex].GetDistance()) {
 				updateVertexPosition(parentIndex, _index);
 				updateVertexPosition(upVertex, parentIndex);
 				
@@ -82,13 +82,13 @@ public class VertexPriorityQueue {
 		int rightChildIndex = _index * 2 + 1;
 		
 		if(leftChildIndex < m_HeapSize && m_VertexHeap[leftChildIndex] != null) {
-			if(m_VertexHeap[leftChildIndex].GetDistanceToSource() < m_VertexHeap[smallestChildIndex].GetDistanceToSource()) {
+			if(m_VertexHeap[leftChildIndex].GetDistance() < m_VertexHeap[smallestChildIndex].GetDistance()) {
 				smallestChildIndex = leftChildIndex;
 			}
 		}
 		
 		if(rightChildIndex < m_HeapSize && m_VertexHeap[rightChildIndex] != null) {
-			if(m_VertexHeap[rightChildIndex].GetDistanceToSource() < m_VertexHeap[smallestChildIndex].GetDistanceToSource()) {
+			if(m_VertexHeap[rightChildIndex].GetDistance() < m_VertexHeap[smallestChildIndex].GetDistance()) {
 				smallestChildIndex = rightChildIndex;
 			}
 		}
@@ -168,7 +168,7 @@ public class VertexPriorityQueue {
 	public boolean Update(Vertex _vertex, float _value) {
 		
 		if(getVertexPosition(_vertex) > 0) {
-			m_VertexHeap[getVertexPosition(_vertex)].SetDistanceToSource(_value);
+			m_VertexHeap[getVertexPosition(_vertex)].SetDistance(_value);
 			upHeap(getVertexPosition(_vertex));
 			return true;
 		}

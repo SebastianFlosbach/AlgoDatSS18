@@ -2,8 +2,6 @@ package presentation;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import business.algorithm.ListPriorityFirst;
 import business.algorithm.MatrixPriorityFirst;
@@ -166,8 +164,8 @@ public class GraphTester {
 			return ViewState.AlgoSelection;
 		}
 		
-		System.out.println("1. MatrixPriorityFirst");
-		System.out.println("2. PriorityQueue");
+		System.out.println("1. Matrix Priority-First");
+		System.out.println("2. List Priority-First");
 		System.out.print("Choose type of execution: ");
 		
 		String type = System.console().readLine();
@@ -228,20 +226,22 @@ public class GraphTester {
 				mpf.doPrim(currentGraph.GetAdjacencyMatrix());		
 			}
 			else if(executionType == ExecutionType.List) {
+				
+				System.out.println("Befor as list:");
+				System.out.println();
+				System.out.println(currentGraph);
+				System.out.println();
+				
 				ListPriorityFirst.Prim(currentGraph, 1);
+				
+				System.out.println("After Prim:");
+				System.out.println();
 				System.out.println(currentGraph);
 			}
 		}
 		else if(algorithm == Algorithm.Dijkstra) {			
 			if(executionType == ExecutionType.Matrix) {
 				MatrixPriorityFirst mpf = new MatrixPriorityFirst();
-				
-				System.out.println("Befor as adjacency matrix");
-				System.out.println();
-				MatrixPriorityFirst.printMatrix(currentGraph.GetAdjacencyMatrix());
-				
-				System.out.println("After Dijkstra:");
-				System.out.println();
 				mpf.doDijkstra(currentGraph.GetAdjacencyMatrix());
 			}
 			else if(executionType == ExecutionType.List) {

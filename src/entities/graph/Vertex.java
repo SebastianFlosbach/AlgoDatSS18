@@ -3,11 +3,16 @@ package entities.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents a vertex inside a graph
+ * @author Sebastian
+ *
+ */
 public class Vertex {
 	
 	private int m_Id;
 	
-	private float m_DistanceToSource;
+	private float m_Distance = Float.MAX_VALUE;
 	
 	private List<Edge> m_Edges;
 	
@@ -18,24 +23,24 @@ public class Vertex {
 	
 	
 	/**
-	 * Get distance to source vertex
-	 * @return
+	 * Get distance to a specific vertex depending on the used algorithm.
+	 * @return Distance as float value, initialized with Float.MAX_VALUE
 	 */
-	public float GetDistanceToSource() {
-		return m_DistanceToSource;
+	public float GetDistance() {
+		return m_Distance;
 	}
 	
 	/**
-	 * Set distance to source vertex
-	 * @param _distance
+	 * Set distance to a specific vertex depending on the used algorithm.
+	 * @param _distance The new distance
 	 */
-	public void SetDistanceToSource(float _distance) {
-		m_DistanceToSource = _distance;
+	public void SetDistance(float _distance) {
+		m_Distance = _distance;
 	}
 	
 	/**
 	 * Get id of this vertex
-	 * @return
+	 * @return Id of this vertex
 	 */
 	public int GetId() {
 		return m_Id;
@@ -43,7 +48,7 @@ public class Vertex {
 	
 	/**
 	 * Get all edges of this vertex
-	 * @return
+	 * @return List of Edges
 	 */
 	public List<Edge> GetEdges(){
 		return m_Edges;

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"business.algorithm"},{"l":"data"},{"l":"entities.graph"},{"l":"entities.priorityqueue"},{"l":"presentation"}]
+packageSearchIndex = [{"l":"business.algorithm"}]
