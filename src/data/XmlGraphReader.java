@@ -77,7 +77,7 @@ public class XmlGraphReader {
 				if(currentElement.getTagName() == "edge" && graph != null) {
 					int id1 = Integer.parseInt(currentElement.getAttribute("id1"));
 					int id2 = Integer.parseInt(currentElement.getAttribute("id2"));
-					float weight = Float.parseFloat(currentElement.getAttribute("weight"));
+					int weight = Integer.parseInt(currentElement.getAttribute("weight"));
 					
 					graph.AddEdge(id1, id2, weight);
 				}

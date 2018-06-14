@@ -41,7 +41,7 @@ public class Graph {
 	 * @param v2 Second vertex
 	 * @param weight Weight of the edge
 	 */
-	public void AddEdge(Vertex v1, Vertex v2, float weight) {
+	public void AddEdge(Vertex v1, Vertex v2, int weight) {
 		
 		if(v1 == null || v2 == null)
 			return;
@@ -57,7 +57,7 @@ public class Graph {
 	 * @param v2 Id of second vertex
 	 * @param weight Weight of the edge
 	 */
-	public void AddEdge(int v1, int v2, float weight) {		
+	public void AddEdge(int v1, int v2, int weight) {		
 		AddEdge(m_Vertices[v1 - 1], m_Vertices[v2 - 1], weight);
 	}
 	
@@ -75,11 +75,11 @@ public class Graph {
 	 * Get the adjacency matrix from this graph
 	 * @return An adjacency matrix
 	 */
-	public float[][] GetAdjacencyMatrix(){
+	public int[][] GetAdjacencyMatrix(){
 		
-		float[][] matrix = new float[m_Vertices.length][m_Vertices.length];
+		int[][] matrix = new int[m_Vertices.length][m_Vertices.length];
 		
-		for(float[] var : matrix) {
+		for(int[] var : matrix) {
 			Arrays.fill(var, -(Integer.MAX_VALUE - 1));
 		}
 		

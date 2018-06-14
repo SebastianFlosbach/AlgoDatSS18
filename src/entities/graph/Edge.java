@@ -7,7 +7,7 @@ package entities.graph;
  */
 public class Edge {
 	
-	private float m_Weight;
+	private int m_Weight;
 	
 	private Vertex m_Vertex1;
 	private Vertex m_Vertex2;
@@ -16,7 +16,7 @@ public class Edge {
 	 * Get weight of this edge
 	 * @return Weight of this edge
 	 */
-	public float GetWeight() {
+	public int GetWeight() {
 		return m_Weight;
 	}
 	
@@ -26,7 +26,7 @@ public class Edge {
 	 * @param v2 Second vertex
 	 * @param weight Weight of the edge
 	 */
-	public Edge(Vertex v1, Vertex v2, float weight) {
+	public Edge(Vertex v1, Vertex v2, int weight) {
 		m_Vertex1 = v1;
 		m_Vertex2 = v2;
 		
