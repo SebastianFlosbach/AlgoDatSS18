@@ -29,7 +29,7 @@ public class ListPriorityFirst {
 			}
 			else
 			{
-				vertex.SetDistance(Float.MAX_VALUE);				
+				vertex.SetDistance(Integer.MAX_VALUE);				
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -50,7 +50,7 @@ public class ListPriorityFirst {
 					continue;
 				
 				// Distance to current neighbour
-				float distance = currentVertex.GetDistance() + edge.GetWeight();
+				int distance = currentVertex.GetDistance() + edge.GetWeight();
 				
 				// If distance is smaller than neighbours shortest distance set that neighbours distance
 				if(distance < neighbour.GetDistance()) {
@@ -82,7 +82,7 @@ public class ListPriorityFirst {
 			}
 			else
 			{
-				vertex.SetDistance(Float.MAX_VALUE);				
+				vertex.SetDistance(Integer.MAX_VALUE);				
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -103,7 +103,7 @@ public class ListPriorityFirst {
 					continue;
 				
 				// Distance to current neighbour
-				float distance = edge.GetWeight();
+				int distance = edge.GetWeight();
 				
 				if(distance < neighbour.GetDistance()) {
 					neighbour.SetParent(currentVertex);

@@ -41,7 +41,7 @@ public class Graph {
 	 * @param v2 Second vertex
 	 * @param weight Weight of the edge
 	 */
-	public void AddEdge(Vertex v1, Vertex v2, float weight) {
+	public void AddEdge(Vertex v1, Vertex v2, int weight) {
 		
 		if(v1 == null || v2 == null)
 			return;
@@ -57,7 +57,7 @@ public class Graph {
 	 * @param v2 Id of second vertex
 	 * @param weight Weight of the edge
 	 */
-	public void AddEdge(int v1, int v2, float weight) {		
+	public void AddEdge(int v1, int v2, int weight) {		
 		AddEdge(m_Vertices[v1 - 1], m_Vertices[v2 - 1], weight);
 	}
 	

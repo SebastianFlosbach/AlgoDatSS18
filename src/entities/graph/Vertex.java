@@ -12,7 +12,7 @@ public class Vertex {
 	
 	private int m_Id;
 	
-	private float m_Distance = Float.MAX_VALUE;
+	private int m_Distance = Integer.MAX_VALUE;
 	
 	private List<Edge> m_Edges;
 	
@@ -26,7 +26,7 @@ public class Vertex {
 	 * Get distance to a specific vertex depending on the used algorithm.
 	 * @return Distance as float value, initialized with Float.MAX_VALUE
 	 */
-	public float GetDistance() {
+	public int GetDistance() {
 		return m_Distance;
 	}
 	
@@ -44,7 +44,7 @@ public class Vertex {
 	 * Set distance to a specific vertex depending on the used algorithm.
 	 * @param _distance The new distance
 	 */
-	public void SetDistance(float _distance) {
+	public void SetDistance(int _distance) {
 		m_Distance = _distance;
 	}
 	
@@ -113,7 +113,7 @@ public class Vertex {
 		if(this.equals(_vertex))
 			return 0f;
 		
-		float distance = Float.MAX_VALUE;
+		int distance = Integer.MAX_VALUE;
 		
 		for(Edge edge : this.GetEdges()) {
 			if(edge.GetNeighbour(this).equals(_vertex)) {
