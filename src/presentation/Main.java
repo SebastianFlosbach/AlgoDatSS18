@@ -1,9 +1,5 @@
 package presentation;
 
-import business.algorithm.ListPriorityFirst;
-import data.XmlGraphReader;
-import entities.graph.Graph;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,7 +12,6 @@ public class Main {
 		else {
 			System.out.println("Missing argument: Path to graphs!");
 		}
-
 		
 	}
 
