@@ -27,10 +27,6 @@ public class ListPriorityFirst {
 			if (vertex.GetId() == startId) {
 				vertex.SetDistance(0);			
 			}
-			else
-			{
-				vertex.SetDistance(Integer.MAX_VALUE);
-			}
 			
 			m_Unvisited.Insert(vertex);
 		}
@@ -40,6 +36,10 @@ public class ListPriorityFirst {
 			
 			// Get Vertex with minimum distance to start
 			currentVertex = m_Unvisited.Pull();
+			
+			if(currentVertex.GetDistance() == Integer.MAX_VALUE) {
+				continue;
+			}
 			
 			// Calculate distance to each unvisited neighbour
 			for(Edge edge : currentVertex.GetEdges()) {
@@ -61,6 +61,14 @@ public class ListPriorityFirst {
 			
 			currentVertex.Visited = true;
 		}
+		
+		for(Vertex v : graph.GetVertices()) {
+			if(v.GetDistance() == Integer.MAX_VALUE) {
+				Dijkstra(graph, v.GetId());
+				break;
+			}
+		}
+		
 	}
 	
 	/**

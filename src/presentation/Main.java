@@ -1,9 +1,13 @@
 package presentation;
 
+import business.algorithm.ListPriorityFirst;
+import data.XmlGraphReader;
+import entities.graph.Graph;
+
 public class Main {
 
 	public static void main(String[] args) {
-/*		
+	
 		if(args != null && args.length > 0) {
 			GraphTester tester = new GraphTester(args[0]);
 			
@@ -12,14 +16,8 @@ public class Main {
 		else {
 			System.out.println("Missing argument: Path to graphs!");
 		}
-*/
-		
-		
-		
-		
+
 		
 	}
-	
-	
 
 }
