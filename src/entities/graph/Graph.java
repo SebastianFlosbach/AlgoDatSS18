@@ -84,8 +84,10 @@ public class Graph {
 		}
 		
 		for(Vertex vertex : m_Vertices) {
-			for(Vertex neighbour : vertex.GetNeighbours()) {
-				matrix[vertex.GetId() - 1][neighbour.GetId() - 1] = vertex.GetDistanceToVertex(neighbour);
+			if(vertex.GetNeighbours() != null) {
+				for(Vertex neighbour : vertex.GetNeighbours()) {
+					matrix[vertex.GetId() - 1][neighbour.GetId() - 1] = vertex.GetDistanceToVertex(neighbour);
+				}
 			}
 		}
 		
