@@ -75,11 +75,11 @@ public class Graph {
 	 * Get the adjacency matrix from this graph
 	 * @return An adjacency matrix
 	 */
-	public float[][] GetAdjacencyMatrix(){
+	public int[][] GetAdjacencyMatrix(){
 		
-		float[][] matrix = new float[m_Vertices.length][m_Vertices.length];
+		int[][] matrix = new int[m_Vertices.length][m_Vertices.length];
 		
-		for(float[] var : matrix) {
+		for(int[] var : matrix) {
 			Arrays.fill(var, -(Integer.MAX_VALUE - 1));
 		}
 		

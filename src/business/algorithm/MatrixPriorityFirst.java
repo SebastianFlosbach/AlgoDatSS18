@@ -11,12 +11,13 @@ public class MatrixPriorityFirst {
      * value which is used for the initialization
      */
     private static final int infinite = Integer.MAX_VALUE - 1;
+    //private static final int infinite = 101 - 1;
     /**
      * Prim: distance from the vertex with the index to the parent vertex
      *
      * Dijkstra: distance from the root to the vertex with the index
      */
-    private float[] priority;
+    private int[] priority;
     /**
      * parent of the vertex with the index
      */
@@ -24,7 +25,7 @@ public class MatrixPriorityFirst {
     /**
      * output adjacency matrix
      */
-    private float[][] output;
+    private int[][] output;
 
 
     /**
@@ -32,18 +33,18 @@ public class MatrixPriorityFirst {
      * @param input: input graph as an adjacency matrix
      *
      */
-    public void doPrim(float input[][])
+    public void doPrim(int input[][])
     {
         int n = input.length+1;
         parent = new int[n];
-        priority = new float[n];
-        output = new float[n-1][n-1];
+        priority = new int[n];
+        output = new int[n-1][n-1];
 
         Init();
         
         int min=0;
         int k;
-        float prio;
+        int prio;
         do {
             k=min;
             priority[k]=-priority[k];
@@ -76,9 +77,11 @@ public class MatrixPriorityFirst {
 
         for (int i=1;i<n-1;i++)
         {
-            System.out.println(i+" - "+parent[i]+"           " + priority[i]);
-            output[i][parent[i]]=priority[i];
-            output[parent[i]][i]=priority[i];
+            if(priority[i]!=0) {
+                System.out.println(i + " - " + parent[i] + "           " + priority[i]);
+            }
+                output[i][parent[i]] = priority[i];
+                output[parent[i]][i] = priority[i];
         }
         System.out.println();
         printMatrix(output);
@@ -89,19 +92,19 @@ public class MatrixPriorityFirst {
      * @param input: input graph as an adjacency matrix
      *
      */
-    public void doDijkstra(float input[][])
+    public void doDijkstra(int input[][])
     {
         int n = input.length+1;
         parent = new int[n];
-        priority = new float[n];
-        output = new float[n-1][n-1];
+        priority = new int[n];
+        output = new int[n-1][n-1];
 
         Init();
 
 
         int min=0;
         int k;
-        float prio;
+        int prio;
         do {
             k=min;
             priority[k]=-priority[k];
@@ -132,9 +135,12 @@ public class MatrixPriorityFirst {
 
         for (int i=0;i<n-1;i++)
         {
-            System.out.println("The shortest path from root to " + i + " has length " + priority[i]);
-            output[i][parent[i]]=priority[i]-priority[parent[i]];
-            output[parent[i]][i]=priority[i]-priority[parent[i]];
+            if(priority[i]!=0) {
+                System.out.println("The shortest path from root to " + i + " has length " + priority[i]);
+            }
+
+            output[i][parent[i]] = priority[i] - priority[parent[i]];
+            output[parent[i]][i] = priority[i] - priority[parent[i]];
         }
         System.out.println();
         printMatrix(output);
@@ -150,7 +156,7 @@ public class MatrixPriorityFirst {
             parent[i]=0;
         }
         priority[priority.length-1]=-(infinite+1);
-
+        
         for(int i=0;i<output.length;i++)
         {
             for(int j=0;j<output.length;j++) {
@@ -163,13 +169,13 @@ public class MatrixPriorityFirst {
      * print an matrix on the console
      * @param output: an adjacency matrix
      */
-    public static void printMatrix(float[][] output)
+    public static void printMatrix(int[][] output)
     {
         for(int i = 0;i<output.length;i++)
         {
             for(int j=0;j<output.length;j++)
             {
-                if(output[i][j]==-infinite)
+                if(output[i][j]==-infinite || output[i][j]==0)
                 {
                     System.out.print("inf ");
                 }

@@ -29,7 +29,7 @@ public class ListPriorityFirst {
 			}
 			else
 			{
-				vertex.SetDistance(Integer.MAX_VALUE);				
+				vertex.SetDistance(Integer.MAX_VALUE);
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -82,7 +82,7 @@ public class ListPriorityFirst {
 			}
 			else
 			{
-				vertex.SetDistance(Integer.MAX_VALUE);				
+				vertex.SetDistance(Integer.MAX_VALUE);
 			}
 			
 			m_Unvisited.Insert(vertex);

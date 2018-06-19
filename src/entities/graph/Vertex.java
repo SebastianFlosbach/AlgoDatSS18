@@ -24,7 +24,7 @@ public class Vertex {
 	
 	/**
 	 * Get distance to a specific vertex depending on the used algorithm.
-	 * @return Distance as float value, initialized with Float.MAX_VALUE
+	 * @return Distance as int value, initialized with Float.MAX_VALUE
 	 */
 	public int GetDistance() {
 		return m_Distance;
@@ -108,10 +108,10 @@ public class Vertex {
 	 * @param _vertex Vertex to get distance to
 	 * @return Distance to vertex, 0 if vertex is the same, Float.MAX_VALUE if vertices aren't neighbors
 	 */
-	public float GetDistanceToVertex(Vertex _vertex) {
+	public int GetDistanceToVertex(Vertex _vertex) {
 		
 		if(this.equals(_vertex))
-			return 0f;
+			return 0;
 		
 		int distance = Integer.MAX_VALUE;
 		
