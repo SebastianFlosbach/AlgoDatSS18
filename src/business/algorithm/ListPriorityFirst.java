@@ -10,107 +10,74 @@ import entities.priorityqueue.VertexPriorityQueue;
  */
 public class ListPriorityFirst {
 	
+	private static final int INFINITE = Integer.MAX_VALUE - 1;
+	
+	private int[] m_Priority;
+	private Graph m_Graph;
+	
+	public ListPriorityFirst(Graph graph) {
+		m_Graph = graph;
+	}
+	
 	/**
 	 * Execute Dijkstra's algorithm on a graph with specific start Vertex
-	 * @param graph Graph to execute on
-	 * @param startId Id of the start Vertex
 	 */
-	public static void Dijkstra(Graph graph, int startId) {
+	public void Dijkstra() {
 		
-		VertexPriorityQueue m_Unvisited = new VertexPriorityQueue(graph.GetVertices().length);
+		m_Priority = new int[m_Graph.GetVertices().length + 1];
 		
-		// Currently visited vertex
-		Vertex currentVertex = null;
-		
-		// Add vertices to unvisited, set distance of start vertex to 0
-		for (Vertex vertex : graph.GetVertices()) {
-			if (vertex.GetId() == startId) {
-				vertex.SetDistance(0);			
-			}
-			else
-			{
-				vertex.SetDistance(Integer.MAX_VALUE);
-			}
-			
-			m_Unvisited.Insert(vertex);
+		for(Vertex v : m_Graph.GetVertices()) {
+			m_Priority[v.GetId()] = -INFINITE;
 		}
 		
-		// While unvisited vertices exist calculate distances
-		while (m_Unvisited.IsEmpty() == false) {
-			
-			// Get Vertex with minimum distance to start
-			currentVertex = m_Unvisited.Pull();
-			
-			// Calculate distance to each unvisited neighbour
-			for(Edge edge : currentVertex.GetEdges()) {
-						
-				Vertex neighbour = edge.GetNeighbour(currentVertex);
-				
-				if(neighbour.Visited)
-					continue;
-				
-				// Distance to current neighbour
-				int distance = currentVertex.GetDistance() + edge.GetWeight();
-				
-				// If distance is smaller than neighbours shortest distance set that neighbours distance
-				if(distance < neighbour.GetDistance()) {
-					neighbour.SetParent(currentVertex);
-					m_Unvisited.Update(neighbour, distance);
-				}				
+		for(Vertex v : m_Graph.GetVertices()) {
+			if(m_Priority[v.GetId()] == -INFINITE) {
+				visitDijkstra(v);
 			}
+		}
+	}
+	
+	private void visitDijkstra(Vertex vertex) {
+		
+		VertexPriorityQueue priorityQueue;
+		
+		if(vertex.GetNeighbours() != null) {
+			priorityQueue = new VertexPriorityQueue(vertex.GetNeighbours().length + 1);
+		}
+		else {
+			priorityQueue = new VertexPriorityQueue(1);
+		}
+		
+		if(priorityQueue.Update(vertex, INFINITE)) {
+			vertex.SetParent(null);
+		}
+		
+		while(priorityQueue.IsEmpty() == false) {
+			vertex = priorityQueue.Pull();
+			m_Priority[vertex.GetId()] = - m_Priority[vertex.GetId()];
 			
-			currentVertex.Visited = true;
+			if(m_Priority[vertex.GetId()] == INFINITE) {
+				
+				for(Edge edge : vertex.GetEdges()) {		
+					
+					Vertex neighbour = edge.GetNeighbour(vertex);
+					
+					if(m_Priority[neighbour.GetId()] < 0) {
+						if(priorityQueue.Update(neighbour, m_Priority[vertex.GetId()] + edge.GetWeight())) {
+							m_Priority[neighbour.GetId()] = -(m_Priority[vertex.GetId()] + edge.GetWeight());
+							neighbour.SetParent(vertex);
+						}
+					}
+				}
+			}
 		}
 	}
 	
 	/**
 	 * Execute Prim's algorithm on a graph with specific start Vertex
-	 * @param graph Graph to execute on
-	 * @param startId Id of the start Vertex
 	 */
-	public static void Prim(Graph graph, int startId) {
+	public void Prim() {
 		
-		VertexPriorityQueue m_Unvisited = new VertexPriorityQueue(graph.GetVertices().length);
-		
-		// Currently visited vertex
-		Vertex currentVertex = null;
-		
-		// Add vertices to unvisited, set distance of start vertex to 0
-		for (Vertex vertex : graph.GetVertices()) {
-			if (vertex.GetId() == startId) {
-				vertex.SetDistance(0);			
-			}
-			else
-			{
-				vertex.SetDistance(Integer.MAX_VALUE);
-			}
-			
-			m_Unvisited.Insert(vertex);
-		}
-		
-		// While unvisited vertices exist calculate distances
-		while (m_Unvisited.IsEmpty() == false) {
-			
-			// Get Vertex with minimum distance to start
-			currentVertex = m_Unvisited.Pull();
-			
-			// Calculate distance to each unvisited neighbour
-			for(Edge edge : currentVertex.GetEdges()) {
-						
-				Vertex neighbour = edge.GetNeighbour(currentVertex);
-				
-				if(neighbour.Visited)
-					continue;
-				
-				// Distance to current neighbour
-				int distance = edge.GetWeight();
-				
-				if(distance < neighbour.GetDistance()) {
-					neighbour.SetParent(currentVertex);
-					m_Unvisited.Update(neighbour, distance);	
-				}
-			}		
-		}
 	}
 	
 }

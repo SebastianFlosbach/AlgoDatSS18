@@ -234,13 +234,14 @@ public class GraphTester {
 				mpf.doPrim(currentGraph.GetAdjacencyMatrix());		
 			}
 			else if(executionType == ExecutionType.List) {
+				ListPriorityFirst lpf = new ListPriorityFirst(currentGraph);
 				
 				System.out.println("Befor as list:");
 				System.out.println();
 				System.out.println(currentGraph);
 				System.out.println();
 				
-				ListPriorityFirst.Prim(currentGraph, 1);
+				lpf.Prim();
 				
 				System.out.println("After Prim:");
 				System.out.println();
@@ -253,7 +254,8 @@ public class GraphTester {
 				mpf.doDijkstra(currentGraph.GetAdjacencyMatrix());
 			}
 			else if(executionType == ExecutionType.List) {
-				ListPriorityFirst.Dijkstra(currentGraph, 1);
+				ListPriorityFirst lpf = new ListPriorityFirst(currentGraph);
+				lpf.Dijkstra();
 				System.out.println(currentGraph.GetReducedGraphToString());
 			}
 		}

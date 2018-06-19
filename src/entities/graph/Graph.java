@@ -35,6 +35,13 @@ public class Graph {
 		}
 	}	
 	
+	public Vertex GetVertex(int id) {
+		if(id > 0 && id < m_Vertices.length)
+			return m_Vertices[id];
+		
+		return null;
+	}
+	
 	/**
 	 * Add a new Edge between two vertices
 	 * @param v1 First vertex

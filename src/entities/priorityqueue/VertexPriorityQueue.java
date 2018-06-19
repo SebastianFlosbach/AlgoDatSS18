@@ -143,9 +143,10 @@ public class VertexPriorityQueue {
 	/**
 	 * Insert a new Vertex into the queue
 	 * @param _vertex Vertex to be inserted
+	 * @param _priority Initial priority
 	 * @return True if insertion was successful
 	 */
-	public boolean Insert(Vertex _vertex) {
+	public boolean Insert(Vertex _vertex, int _priority) {
 		
 		if(_vertex == null || m_CurrentIndex >= m_HeapSize || getVertexPosition(_vertex) != 0)
 			return false;
@@ -154,6 +155,7 @@ public class VertexPriorityQueue {
 		
 		m_VertexHeap[m_CurrentIndex] = _vertex;
 		m_Position[_vertex.GetId()] = m_CurrentIndex;
+		_vertex.SetDistance(_priority);
 		
 		upHeap(m_CurrentIndex);
 		
@@ -169,8 +171,8 @@ public class VertexPriorityQueue {
 	public boolean Update(Vertex _vertex, int _value) {
 		
 		if(getVertexPosition(_vertex) > 0) {
-			if(_value < m_VertexHeap[getVertexPosition(_vertex)].GetDistance()) {
-				m_VertexHeap[getVertexPosition(_vertex)].SetDistance(_value);
+			if(_value < _vertex.GetDistance()) {
+				_vertex.SetDistance(_value);
 				upHeap(getVertexPosition(_vertex));
 				return true;
 			}
