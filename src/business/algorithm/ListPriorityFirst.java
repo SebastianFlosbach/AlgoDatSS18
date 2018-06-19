@@ -38,14 +38,11 @@ public class ListPriorityFirst {
 	}
 	
 	private void visitDijkstra(Vertex vertex) {
+			
+		VertexPriorityQueue priorityQueue = new VertexPriorityQueue(m_Graph.GetVertices().length);
 		
-		VertexPriorityQueue priorityQueue;
-		
-		if(vertex.GetNeighbours() != null) {
-			priorityQueue = new VertexPriorityQueue(vertex.GetNeighbours().length + 1);
-		}
-		else {
-			priorityQueue = new VertexPriorityQueue(1);
+		for(Vertex v : vertex.GetNeighbours()) {
+			priorityQueue.Insert(v, m_Priority[v.GetId()]);
 		}
 		
 		if(priorityQueue.Update(vertex, INFINITE)) {
