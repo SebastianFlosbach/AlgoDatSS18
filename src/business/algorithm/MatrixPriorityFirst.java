@@ -73,13 +73,9 @@ public class MatrixPriorityFirst {
             }
         }while(min!=input.length);
 
-        System.out.println("Edges       Weights");
 
         for (int i=1;i<n-1;i++)
         {
-            if(priority[i]!=0) {
-                System.out.println(i + " - " + parent[i] + "           " + priority[i]);
-            }
                 output[i][parent[i]] = priority[i];
                 output[parent[i]][i] = priority[i];
         }
@@ -135,10 +131,6 @@ public class MatrixPriorityFirst {
 
         for (int i=0;i<n-1;i++)
         {
-            if(priority[i]!=0) {
-                System.out.println("The shortest path from root to " + i + " has length " + priority[i]);
-            }
-
             output[i][parent[i]] = priority[i] - priority[parent[i]];
             output[parent[i]][i] = priority[i] - priority[parent[i]];
         }

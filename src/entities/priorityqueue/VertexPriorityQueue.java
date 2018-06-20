@@ -37,7 +37,7 @@ public class VertexPriorityQueue {
 	/**
 	 * Get heap position of a vertex
 	 * @param _vertex Vertex inside the heap
-	 * @return The heap position > 0, otherwise 0
+	 * @return The heap position greater than 0, otherwise 0
 	 */
 	private int getVertexPosition(Vertex _vertex) {
 		if(_vertex != null && _vertex.GetId() <= m_HeapSize)		
@@ -104,7 +104,7 @@ public class VertexPriorityQueue {
 	/**
 	 * Change vertex position in the heap and update its position in the position array
 	 * @param _vertex Vertex to update
-	 * @param _position New position inside the vertexHeap
+	 * @param _newPosition New position inside the vertexHeap
 	 */
 	private void updateVertexPosition(Vertex _vertex, int _newPosition) {
 		if(_vertex == null || _newPosition < 1 || _newPosition > m_HeapSize)
