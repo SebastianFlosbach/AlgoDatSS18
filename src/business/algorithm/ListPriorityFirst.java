@@ -25,8 +25,7 @@ public class ListPriorityFirst {
 		// Add vertices to unvisited, set distance of start vertex to 0
 		for (Vertex vertex : graph.GetVertices()) {
 			if (vertex.GetId() == startId) {
-				vertex.SetDistance(0);		
-				break;
+				vertex.SetDistance(0);
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -64,7 +63,7 @@ public class ListPriorityFirst {
 		}
 		
 		for(Vertex v : graph.GetVertices()) {
-			if(v.GetDistance() == Integer.MAX_VALUE) {
+			if(v.Visited == false) {
 				Dijkstra(graph, v.GetId());
 				break;
 			}
@@ -88,7 +87,6 @@ public class ListPriorityFirst {
 		for (Vertex vertex : graph.GetVertices()) {
 			if (vertex.GetId() == startId) {
 				vertex.SetDistance(0);
-				break;
 			}
 			
 			m_Unvisited.Insert(vertex);
@@ -115,14 +113,14 @@ public class ListPriorityFirst {
 					neighbour.SetParent(currentVertex);
 					m_Unvisited.Update(neighbour, distance);	
 				}
-			}		
+			}	
 			
 			currentVertex.Visited = true;
 			
 		}
 		
 		for(Vertex v : graph.GetVertices()) {
-			if(v.GetDistance() == Integer.MAX_VALUE) {
+			if(v.Visited == false) {
 				Prim(graph, v.GetId());
 				break;
 			}
